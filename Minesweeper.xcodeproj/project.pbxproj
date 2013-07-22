@@ -319,10 +319,10 @@
 		F5A0F15917968BA4009407FC /* README in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F01E17968BA4009407FC /* README */; };
 		F5A0F15B17968BA4009407FC /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02017968BA4009407FC /* review.png */; };
 		F5A0F15C17968BA4009407FC /* sinaweibo48.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02117968BA4009407FC /* sinaweibo48.png */; };
-		F5A0F15D17968BA4009407FC /* smiley.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02217968BA4009407FC /* smiley.png */; };
-		F5A0F15E17968BA4009407FC /* smiley1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02317968BA4009407FC /* smiley1.png */; };
-		F5A0F15F17968BA4009407FC /* smiley2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02417968BA4009407FC /* smiley2.png */; };
-		F5A0F16017968BA4009407FC /* smiley3.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02517968BA4009407FC /* smiley3.png */; };
+		F5A0F15D17968BA4009407FC /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02217968BA4009407FC /* smile.png */; };
+		F5A0F15E17968BA4009407FC /* smile1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02317968BA4009407FC /* smile1.png */; };
+		F5A0F15F17968BA4009407FC /* smile2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02417968BA4009407FC /* smile2.png */; };
+		F5A0F16017968BA4009407FC /* smile3.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02517968BA4009407FC /* smile3.png */; };
 		F5A0F16117968BA4009407FC /* Splash-Animation-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02617968BA4009407FC /* Splash-Animation-568h@2x.png */; };
 		F5A0F16217968BA4009407FC /* Splash-Animation.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02717968BA4009407FC /* Splash-Animation.png */; };
 		F5A0F16317968BA4009407FC /* Splash-Animation~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F02817968BA4009407FC /* Splash-Animation~ipad.png */; };
@@ -337,6 +337,8 @@
 		F5A0F16C17968BA4009407FC /* twitter32.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03117968BA4009407FC /* twitter32.png */; };
 		F5A0F16D17968BA4009407FC /* twitter48.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03217968BA4009407FC /* twitter48.png */; };
 		F5A0F16E17968BA4009407FC /* twitter_load.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03317968BA4009407FC /* twitter_load.png */; };
+		F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D903179CF960005A0233 /* JFTitleClickButton.m */; };
+		F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -669,10 +671,10 @@
 		F5A0F01E17968BA4009407FC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		F5A0F02017968BA4009407FC /* review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = review.png; sourceTree = "<group>"; };
 		F5A0F02117968BA4009407FC /* sinaweibo48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaweibo48.png; sourceTree = "<group>"; };
-		F5A0F02217968BA4009407FC /* smiley.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley.png; sourceTree = "<group>"; };
-		F5A0F02317968BA4009407FC /* smiley1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley1.png; sourceTree = "<group>"; };
-		F5A0F02417968BA4009407FC /* smiley2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley2.png; sourceTree = "<group>"; };
-		F5A0F02517968BA4009407FC /* smiley3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smiley3.png; sourceTree = "<group>"; };
+		F5A0F02217968BA4009407FC /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
+		F5A0F02317968BA4009407FC /* smile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile1.png; sourceTree = "<group>"; };
+		F5A0F02417968BA4009407FC /* smile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile2.png; sourceTree = "<group>"; };
+		F5A0F02517968BA4009407FC /* smile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile3.png; sourceTree = "<group>"; };
 		F5A0F02617968BA4009407FC /* Splash-Animation-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-Animation-568h@2x.png"; sourceTree = "<group>"; };
 		F5A0F02717968BA4009407FC /* Splash-Animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-Animation.png"; sourceTree = "<group>"; };
 		F5A0F02817968BA4009407FC /* Splash-Animation~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash-Animation~ipad.png"; sourceTree = "<group>"; };
@@ -687,6 +689,10 @@
 		F5A0F03117968BA4009407FC /* twitter32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter32.png; sourceTree = "<group>"; };
 		F5A0F03217968BA4009407FC /* twitter48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter48.png; sourceTree = "<group>"; };
 		F5A0F03317968BA4009407FC /* twitter_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_load.png; sourceTree = "<group>"; };
+		F5F6D902179CF960005A0233 /* JFTitleClickButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTitleClickButton.h; sourceTree = "<group>"; };
+		F5F6D903179CF960005A0233 /* JFTitleClickButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTitleClickButton.m; sourceTree = "<group>"; };
+		F5F6D905179D05DB005A0233 /* JFMineLevelConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMineLevelConfig.h; sourceTree = "<group>"; };
+		F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMineLevelConfig.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,8 +800,12 @@
 		F5A0EC5617968181009407FC /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				F5F6D902179CF960005A0233 /* JFTitleClickButton.h */,
+				F5F6D903179CF960005A0233 /* JFTitleClickButton.m */,
 				F5A0EC531796817A009407FC /* JFMineButton.h */,
 				F5A0EC541796817A009407FC /* JFMineButton.m */,
+				F5F6D905179D05DB005A0233 /* JFMineLevelConfig.h */,
+				F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1098,10 +1108,10 @@
 				F5A0F01E17968BA4009407FC /* README */,
 				F5A0F02017968BA4009407FC /* review.png */,
 				F5A0F02117968BA4009407FC /* sinaweibo48.png */,
-				F5A0F02217968BA4009407FC /* smiley.png */,
-				F5A0F02317968BA4009407FC /* smiley1.png */,
-				F5A0F02417968BA4009407FC /* smiley2.png */,
-				F5A0F02517968BA4009407FC /* smiley3.png */,
+				F5A0F02217968BA4009407FC /* smile.png */,
+				F5A0F02317968BA4009407FC /* smile1.png */,
+				F5A0F02417968BA4009407FC /* smile2.png */,
+				F5A0F02517968BA4009407FC /* smile3.png */,
 				F5A0F02617968BA4009407FC /* Splash-Animation-568h@2x.png */,
 				F5A0F02717968BA4009407FC /* Splash-Animation.png */,
 				F5A0F02817968BA4009407FC /* Splash-Animation~ipad.png */,
@@ -1495,10 +1505,10 @@
 				F5A0F15917968BA4009407FC /* README in Resources */,
 				F5A0F15B17968BA4009407FC /* review.png in Resources */,
 				F5A0F15C17968BA4009407FC /* sinaweibo48.png in Resources */,
-				F5A0F15D17968BA4009407FC /* smiley.png in Resources */,
-				F5A0F15E17968BA4009407FC /* smiley1.png in Resources */,
-				F5A0F15F17968BA4009407FC /* smiley2.png in Resources */,
-				F5A0F16017968BA4009407FC /* smiley3.png in Resources */,
+				F5A0F15D17968BA4009407FC /* smile.png in Resources */,
+				F5A0F15E17968BA4009407FC /* smile1.png in Resources */,
+				F5A0F15F17968BA4009407FC /* smile2.png in Resources */,
+				F5A0F16017968BA4009407FC /* smile3.png in Resources */,
 				F5A0F16117968BA4009407FC /* Splash-Animation-568h@2x.png in Resources */,
 				F5A0F16217968BA4009407FC /* Splash-Animation.png in Resources */,
 				F5A0F16317968BA4009407FC /* Splash-Animation~ipad.png in Resources */,
@@ -1551,6 +1561,8 @@
 				F504992C178FD906007BBFD7 /* JFAppDelegate.m in Sources */,
 				F5049935178FD906007BBFD7 /* JFViewController.m in Sources */,
 				F5A0EC551796817A009407FC /* JFMineButton.m in Sources */,
+				F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */,
+				F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
