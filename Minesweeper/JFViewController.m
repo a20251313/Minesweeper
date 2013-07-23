@@ -18,6 +18,17 @@
 @synthesize mineConfig = m_objMineConfig;
 @synthesize titleView;
 
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        m_arrayStoreBtn = [[NSMutableArray alloc] init];
+        
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     
@@ -52,6 +63,7 @@
    
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
 
 
 -(void)dealloc
@@ -94,7 +106,7 @@
         NSLog(@"frame:%@",[NSValue valueWithCGRect:frame]);
         m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width-44)];
         m_scorllView.contentSize = m_scorllView.frame.size;
-        m_scorllView.contentOffset = CGPointMake(0, frame.size.width);
+       // m_scorllView.contentOffset = CGPointMake(0, frame.size.width);
         m_fWidth = frame.size.width;
         m_fheight = frame.size.height-44;
         [self.view addSubview:m_scorllView];
@@ -113,6 +125,13 @@
         self.mineConfig = config;
     }
     
+    
+    for (int i = 0; i < [m_arrayStoreBtn count]; i++)
+    {
+        JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];
+        [btn removeFromSuperview];
+        [m_arrayStoreBtn removeAllObjects];
+    }
     CGFloat  fTempWidth = 24;
     CGFloat  fTempheight = 24;
     
@@ -148,12 +167,49 @@
         btnTemp.delegate = self;
         btnTemp.tag = i;
         [m_scorllView addSubview:btnTemp];
+         [m_arrayStoreBtn addObject:btnTemp];
         [btnTemp release];
 
         fXpoint+= fTempWidth;
-
+       
 
     }
+    
+    
+    NSMutableSet  *setNumber = [[NSMutableSet alloc] init];
+    for (int i = 0; i < 99; i++)
+    {
+      //  srandom(time(NULL));
+        long  number = random()%(self.mineConfig.rowNumber*self.mineConfig.colummNumber);
+        
+        NSNumber  *longNumber = [NSNumber numberWithLong:number];
+        
+        BOOL  hasNumber = NO;
+        
+        while (!hasNumber)
+        {
+         
+            if ([setNumber containsObject:longNumber])
+            {
+                number = random()%(self.mineConfig.rowNumber*self.mineConfig.colummNumber);
+                longNumber = [NSNumber numberWithLong:number];
+            }else
+            {
+                hasNumber = YES;
+            }
+        
+        }
+        
+        
+        
+        [setNumber addObject:[NSNumber numberWithLong:number]];
+        NSLog(@"number:%ld",number);
+        
+        
+    }
+    
+    NSLog(@"count:%d setNumber:%@",setNumber.count,setNumber);
+    
 
     [m_scorllView setContentSize:CGSizeMake(self.mineConfig.rowNumber*fTempWidth, self.mineConfig.colummNumber*fTempheight)];
     [m_scorllView setContentOffset:CGPointMake(0, 0)];

@@ -15,6 +15,7 @@
 @interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate>
 {
     JFMineLevelConfig  *m_objMineConfig;
+    NSMutableArray     *m_arrayStoreBtn;
     
     UIScrollView       *m_scorllView;
     
