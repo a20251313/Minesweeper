@@ -26,9 +26,12 @@
 {
     JFMineLevelConfig  *m_objConfig;
     id<JFTitleClickButtonDelegate>  delegate;
+    int                m_iSeconds;
+    NSTimer            *m_timer;
 }
 @property(nonatomic,retain)JFMineLevelConfig  *mineConfig;
 @property(nonatomic,assign)id<JFTitleClickButtonDelegate> delegate;
+-(void)startTimer;
 
 - (id)initWithFrame:(CGRect)frame WithConfig:(JFMineLevelConfig*)config;
 @end

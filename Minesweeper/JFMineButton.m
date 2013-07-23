@@ -15,6 +15,8 @@
 @implementation JFMineButton
 @synthesize picMynumer = m_ipicMynumer;
 @synthesize mineNumber = m_iMineNumber;
+@synthesize delegate;
+@synthesize isMine = m_bIsMine;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber
 {
@@ -26,15 +28,51 @@
     {
         [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-base.png",m_ipicMynumer]] forState:UIControlStateNormal];
         
+        UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMineButton:)];
+        [self addGestureRecognizer:tap];
+        [tap release];
+        
+        UILongPressGestureRecognizer  *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMineButton:)];
+        [self addGestureRecognizer:longPress];
+        [longPress release];
+        
+        
+        m_bIsMine = NO;
         // Initialization code
     }
     return self;
 }
 
 
+
+-(void)clickMineButton:(id)sender
+{
+    if (delegate  && [delegate respondsToSelector:@selector(clickMineButton:)])
+    {
+        [delegate clickMineButton:self];
+    }
+    NSLog(@"clickMineButton:%@",sender);
+}
+
+
+-(void)longPressMineButton:(id)sender
+{
+    if (delegate  && [delegate respondsToSelector:@selector(longPressMineButton:)])
+    {
+        [delegate longPressMineButton:self];
+    }
+    
+    NSLog(@"longPressMineButton:%@",sender);
+}
 -(void)setMineNumber:(int)number
 {
     [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,number]] forState:UIControlStateNormal];
+}
+
+-(void)modifyPicNumber:(int)picNumber
+{
+    m_ipicMynumer = picNumber;
+    [self setMineFlag:m_ibuttonFlag];
 }
 
 -(void)setMineFlag:(JFMineButtonFlag)flag

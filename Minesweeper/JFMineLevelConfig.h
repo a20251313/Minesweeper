@@ -13,6 +13,8 @@
 
 @property(nonatomic)int mineNumber;
 @property(nonatomic)int totalButtonNumber;
+@property(nonatomic)int rowNumber;
+@property(nonatomic)int colummNumber;
 @property(nonatomic)int minePicNumber;
 
 @end

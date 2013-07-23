@@ -14,7 +14,7 @@
 #define SmileViewTag        62
 
 @implementation JFTitleClickButton
-//120+48  48
+//120+24  48
 @synthesize mineConfig = m_objConfig;
 @synthesize delegate;
 
@@ -26,8 +26,8 @@
     {
         self.mineConfig = config;
         
-        
-        UILabel  *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 60, 24)];
+        m_iSeconds = 0;
+        UILabel  *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, 55, 24)];
         labelLeft.textAlignment = UITextAlignmentRight;
         labelLeft.textColor = [UIColor redColor];
         labelLeft.text = [NSString stringWithFormat:@"%d",self.mineConfig.mineNumber];
@@ -38,7 +38,7 @@
         [labelLeft release];
         
         
-        UIImageView  *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 0, 48, 48)];
+        UIImageView  *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(60, 12, 24, 24)];
         imageView.image = [UIImage imageNamed:@"smile1.png"];
         imageView.userInteractionEnabled = YES;
         imageView.tag = SmileViewTag;
@@ -53,7 +53,7 @@
         
         
         
-        UILabel  *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(60+48, 12, 60, 24)];
+        UILabel  *labelRight = [[UILabel alloc] initWithFrame:CGRectMake(65+24, 12, 60, 24)];
         labelRight.textAlignment = UITextAlignmentLeft;
         labelRight.textColor = [UIColor redColor];
         labelRight.text = @"00:00";
@@ -68,6 +68,64 @@
     return self;
 }
 
+
+-(void)startTimer
+{
+    m_iSeconds = 0;
+    if (m_timer)
+    {
+        [m_timer release];
+         m_timer = nil;
+    }
+    
+    m_timer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:1 target:self selector:@selector(timeChange:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:m_timer forMode:NSRunLoopCommonModes];
+}
+
+-(void)stopTimer
+{
+    if (m_timer)
+    {
+        [m_timer release];
+        m_timer = nil;
+    }
+    
+}
+
+-(void)timeChange:(NSTimer *)timer
+{
+    m_iSeconds++;
+    
+    int seconds = m_iSeconds%60;
+    int minutes = m_iSeconds/60;
+    
+    NSString  *strTime = @"";
+    
+    if (minutes < 10)
+    {
+        strTime = [NSString stringWithFormat:@"0%d:",minutes];
+    }else
+    {
+        strTime = [NSString stringWithFormat:@"%d:",minutes];
+    }
+    
+    if (seconds < 10)
+    {
+        strTime = [NSString stringWithFormat:@"%@0%d",strTime,seconds];
+    }else
+    {
+        strTime = [NSString stringWithFormat:@"%@%d",strTime,seconds];
+    }
+    
+    UILabel  *labelTime = (UILabel *)[self viewWithTag:RightLabelTag];
+    
+    if (labelTime)
+    {
+        [labelTime setText:strTime];
+    }
+    
+    NSLog(@"timeChange:%@",strTime);
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -91,7 +149,12 @@
 
 -(void)dealloc
 {
-    
+    if (m_timer)
+    {
+        [m_timer invalidate];
+        [m_timer release];
+        m_timer = nil;
+    }
     self.mineConfig = nil;
     [super dealloc];
 }
