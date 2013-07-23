@@ -165,6 +165,7 @@
         NSLog(@"fXpoint:%f fYpoint:%f",fXpoint,fYpoint);
         JFMineButton  *btnTemp = [[JFMineButton alloc] initWithFrame:CGRectMake(fXpoint, fYpoint, fTempWidth, fTempheight) withPicNumber:self.mineConfig.minePicNumber];
         btnTemp.delegate = self;
+        btnTemp.isMine = NO;
         btnTemp.tag = i;
         [m_scorllView addSubview:btnTemp];
          [m_arrayStoreBtn addObject:btnTemp];
@@ -179,7 +180,7 @@
     NSMutableSet  *setNumber = [[NSMutableSet alloc] init];
     for (int i = 0; i < 99; i++)
     {
-      //  srandom(time(NULL));
+       srandom(time(NULL));
         long  number = random()%(self.mineConfig.rowNumber*self.mineConfig.colummNumber);
         
         NSNumber  *longNumber = [NSNumber numberWithLong:number];
@@ -203,6 +204,9 @@
         
         
         [setNumber addObject:[NSNumber numberWithLong:number]];
+        
+        JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:number];
+        btn.isMine = YES;
         NSLog(@"number:%ld",number);
         
         
