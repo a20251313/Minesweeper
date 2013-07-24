@@ -11,17 +11,19 @@
 
 //#define MYPICNUMBER 1
 
-//24*24
+//48*48
 @implementation JFMineButton
 @synthesize picMynumer = m_ipicMynumer;
 @synthesize mineNumber = m_iMineNumber;
 @synthesize delegate;
 @synthesize isMine = m_bIsMine;
+@synthesize userMark;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber
 {
     m_ibuttonFlag = JFMineButtonFlagNone;
     m_ipicMynumer = picNumber;
+    m_iMineNumber = 0;
     
     self = [super initWithFrame:frame];
     if (self)
@@ -66,12 +68,13 @@
 }
 -(void)setMineNumber:(int)number
 {
+    m_iMineNumber = number;
     [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,number]] forState:UIControlStateNormal];
 }
 
 -(void)modifyPicNumber:(int)picNumber
 {
-    m_ipicMynumer = picNumber;
+     m_ipicMynumer = picNumber;
     [self setMineFlag:m_ibuttonFlag];
 }
 
@@ -90,10 +93,10 @@
              [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_question.png",m_ipicMynumer]] forState:UIControlStateNormal];
             break;
         case JFMineButtonFlagShowMine:
-            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-mine.png",m_ipicMynumer]] forState:UIControlStateNormal];
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-mine.png",m_ipicMynumer]] forState:UIControlStateNormal]; 
             break;
         case JFMineButtonFlagShowNumber:
-            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,m_iMineNumber]] forState:UIControlStateNormal];
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,self.mineNumber]] forState:UIControlStateNormal];
             break;
         case JFMineButtonFlagWrongMine:
             [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-wrong_flag.png",m_ipicMynumer]] forState:UIControlStateNormal];
@@ -105,6 +108,26 @@
             break;
     }
     
+}
+
+-(void)showUserMark:(JFUserMark)mark
+{
+    m_iUserMark = mark;
+    
+    switch (m_iUserMark)
+    {
+        case JFUserMarkMine:
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_flag.png",m_ipicMynumer]] forState:UIControlStateNormal];
+            break;
+        case JFUserMarkNone:
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-base.png",m_ipicMynumer]] forState:UIControlStateNormal];
+            break;
+        case JFUserMarkQuestion:
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_question.png",m_ipicMynumer]] forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

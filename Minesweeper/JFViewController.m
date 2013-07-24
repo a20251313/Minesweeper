@@ -103,8 +103,8 @@
     {
         CGRect frame = [UIScreen mainScreen].applicationFrame;
         
-        NSLog(@"frame:%@",[NSValue valueWithCGRect:frame]);
-        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width-44)];
+        //NSLog(@"frame:%@",[NSValue valueWithCGRect:frame]);
+        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-20)];
         m_scorllView.contentSize = m_scorllView.frame.size;
        // m_scorllView.contentOffset = CGPointMake(0, frame.size.width);
         m_fWidth = frame.size.width;
@@ -132,8 +132,8 @@
         [btn removeFromSuperview];
         [m_arrayStoreBtn removeAllObjects];
     }
-    CGFloat  fTempWidth = 24;
-    CGFloat  fTempheight = 24;
+    CGFloat  fTempWidth = 48;
+    CGFloat  fTempheight = 48;
     
     CGFloat  fYpoint = 0;
     CGFloat  fXpoint = 0;
@@ -178,7 +178,7 @@
     
     
     NSMutableSet  *setNumber = [[NSMutableSet alloc] init];
-    for (int i = 0; i < 99; i++)
+    for (int i = 0; i < self.mineConfig.mineNumber; i++)
     {
        srandom(time(NULL));
         long  number = random()%(self.mineConfig.rowNumber*self.mineConfig.colummNumber);
@@ -214,12 +214,193 @@
     
     NSLog(@"count:%d setNumber:%@",setNumber.count,setNumber);
     
-
+    [self calutuleMineNumber];
     [m_scorllView setContentSize:CGSizeMake(self.mineConfig.rowNumber*fTempWidth, self.mineConfig.colummNumber*fTempheight)];
     [m_scorllView setContentOffset:CGPointMake(0, 0)];
     
 }
 
+-(void)calutuleMineNumber
+{
+   
+    
+    
+    for (int i = 0; i < [m_arrayStoreBtn count]; i++)
+    {
+        JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];
+        if (btn.isMine)
+        {
+            [btn setMineFlag:JFMineButtonFlagShowMine];
+            continue;
+        }
+        
+        int number = [self getAroundMineNumber:i mineConfig:self.mineConfig];
+        btn.mineNumber = number;
+        
+        [btn setMineFlag:JFMineButtonFlagShowNumber];
+        
+    }
+    
+    
+}
+
+
+-(int)getAroundMineNumber:(int)i mineConfig:(JFMineLevelConfig *)config
+{
+    int  count = 0;
+    int  rowNumber = self.mineConfig.rowNumber;
+    int  columnNUmber= self.mineConfig.colummNumber;
+    
+    JFMineButton  *btnTemp = nil;
+    //left isMine
+    if (i-1 >= 0 && i-1 < rowNumber*columnNUmber)
+    {
+        if ((i-1)%columnNUmber == (columnNUmber-1))
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i-1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+        
+    }
+    
+    
+    //right
+    if (i+1 >= 0 && i+1 < rowNumber*columnNUmber)
+    {
+        if ((i+1)%columnNUmber == 0)
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i+1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+        
+    }
+    
+    
+    //top 
+    if (i-columnNUmber >= 0 && i-columnNUmber < rowNumber*columnNUmber)
+    {
+        
+        btnTemp = [m_arrayStoreBtn objectAtIndex:i-columnNUmber];
+        if (btnTemp.isMine)
+        {
+         count++;
+        }
+        
+    }
+    
+    //top left
+    if (i-columnNUmber-1 >= 0 && i-columnNUmber-1 < rowNumber*columnNUmber)
+    {
+        
+        
+        if ((i-columnNUmber-1)%columnNUmber == (columnNUmber-1))
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i-columnNUmber-1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+       
+        
+    }
+    
+    
+    //top right
+    if (i-columnNUmber+1 >= 0 && i-columnNUmber+1 < rowNumber*columnNUmber)
+    {
+        
+        if ((i-columnNUmber+1)%columnNUmber == 0)
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i-columnNUmber+1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+        
+ 
+        
+    }
+    
+    
+    //bottom 
+    if (i+columnNUmber >= 0 && i+columnNUmber < rowNumber*columnNUmber)
+    {
+        
+        btnTemp = [m_arrayStoreBtn objectAtIndex:i+columnNUmber];
+        if (btnTemp.isMine)
+        {
+            count++;
+        }
+        
+    }
+    
+    //bottom left
+    if (i+columnNUmber-1 >= 0 && i+columnNUmber-1 < rowNumber*columnNUmber)
+    {
+        
+        
+        if ((i+columnNUmber-1)%columnNUmber == (columnNUmber-1))
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i+columnNUmber-1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    //top right
+    if (i+columnNUmber+1 >= 0 && i+columnNUmber+1 < rowNumber*columnNUmber)
+    {
+        
+        if ((i+columnNUmber+1)%columnNUmber == 0)
+        {
+            
+        }else
+        {
+            btnTemp = [m_arrayStoreBtn objectAtIndex:i+columnNUmber+1];
+            if (btnTemp.isMine)
+            {
+                count++;
+            }
+            
+        }
+        
+    }
+    
+    return count;
+}
 
 -(void)clickMenu:(id)sender
 {

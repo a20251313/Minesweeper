@@ -19,6 +19,14 @@ typedef enum
     JFMineButtonFlagWMineExpo
 }JFMineButtonFlag;
 
+
+typedef enum
+{
+    JFUserMarkNone,
+    JFUserMarkQuestion,
+    JFUserMarkMine
+}JFUserMark;
+
 @class JFMineButton;
 
 @protocol JFMineButtonDelegate <NSObject>
@@ -32,6 +40,7 @@ typedef enum
     int    m_iMineNumber;
     BOOL   m_bIsMine;
     JFMineButtonFlag    m_ibuttonFlag;
+    JFUserMark          m_iUserMark;
     id<JFMineButtonDelegate>  delegate;
 }
 @property(nonatomic,assign)id<JFMineButtonDelegate> delegate;
@@ -39,8 +48,11 @@ typedef enum
 @property(nonatomic)int picMynumer;
 @property(nonatomic)int mineNumber;
 @property(nonatomic)BOOL isMine;
+@property(nonatomic)JFUserMark userMark;;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber;
 -(void)modifyPicNumber:(int)picNumber;
+-(void)showUserMark:(JFUserMark)mark;
+-(void)setMineFlag:(JFMineButtonFlag)flag;
 
 @end
