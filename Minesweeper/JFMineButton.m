@@ -18,12 +18,14 @@
 @synthesize delegate;
 @synthesize isMine = m_bIsMine;
 @synthesize userMark;
+@synthesize IsShow;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber
 {
     m_ibuttonFlag = JFMineButtonFlagNone;
     m_ipicMynumer = picNumber;
     m_iMineNumber = 0;
+    IsShow = NO;
     
     self = [super initWithFrame:frame];
     if (self)
@@ -69,7 +71,7 @@
 -(void)setMineNumber:(int)number
 {
     m_iMineNumber = number;
-    [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,number]] forState:UIControlStateNormal];
+  //  [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-%d.png",m_ipicMynumer,number]] forState:UIControlStateNormal];
 }
 
 -(void)modifyPicNumber:(int)picNumber

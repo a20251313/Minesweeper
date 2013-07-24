@@ -49,6 +49,7 @@ typedef enum
 @property(nonatomic)int mineNumber;
 @property(nonatomic)BOOL isMine;
 @property(nonatomic)JFUserMark userMark;;
+@property(nonatomic)BOOL       IsShow;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber;
 -(void)modifyPicNumber:(int)picNumber;

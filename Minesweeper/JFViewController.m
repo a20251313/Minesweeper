@@ -36,7 +36,7 @@
     
     
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 99;
+    config.mineNumber = 60;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 2;
     config.rowNumber = 16;
@@ -230,14 +230,14 @@
         JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];
         if (btn.isMine)
         {
-            [btn setMineFlag:JFMineButtonFlagShowMine];
+           // [btn setMineFlag:JFMineButtonFlagShowMine];
             continue;
         }
         
         int number = [self getAroundMineNumber:i mineConfig:self.mineConfig];
         btn.mineNumber = number;
         
-        [btn setMineFlag:JFMineButtonFlagShowNumber];
+        //[btn setMineFlag:JFMineButtonFlagShowNumber];
         
     }
     
@@ -418,6 +418,184 @@
 }
 
 
+
+-(void)showBtnNumber:(JFMineButton *)mineButton
+{
+    if (mineButton.IsShow)
+    {
+        return;
+    }
+    int tag = mineButton.tag;
+    int  rowNumber = self.mineConfig.rowNumber;
+    int  columnNUmber= self.mineConfig.colummNumber;
+    mineButton.IsShow = YES;
+    [mineButton setMineFlag:JFMineButtonFlagShowNumber];
+    
+
+    if (mineButton.mineNumber <= 0)
+    {
+        
+        JFMineButton  *btnTemp = nil;
+        //left isMine
+        if (tag-1 >= 0 && tag-1 < rowNumber*columnNUmber)
+        {
+            if ((tag-1)%columnNUmber == (columnNUmber-1))
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag-1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:btnTemp];
+                }
+                
+                [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            }
+            
+        }
+        
+        
+        //right
+        if (tag+1 >= 0 && tag+1 < rowNumber*columnNUmber)
+        {
+            if ((tag+1)%columnNUmber == 0)
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag+1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:mineButton];
+                    
+                }
+                
+                 [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            }
+            
+        }
+        
+        
+        //top
+        if (tag-columnNUmber >= 0 && tag-columnNUmber < rowNumber*columnNUmber)
+        {
+            
+            btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber];
+            if (btnTemp.mineNumber <= 0)
+            {
+                [self showBtnNumber:btnTemp];
+            }
+             [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            
+        }
+        
+        //top left
+        if (tag-columnNUmber-1 >= 0 && tag-columnNUmber-1 < rowNumber*columnNUmber)
+        {
+            
+            
+            if ((tag-columnNUmber-1)%columnNUmber == (columnNUmber-1))
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber-1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:btnTemp];
+                }
+                 [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+                
+            }
+            
+            
+        }
+        
+        
+        //top right
+        if (tag-columnNUmber+1 >= 0 && tag-columnNUmber+1 < rowNumber*columnNUmber)
+        {
+            
+            if ((tag-columnNUmber+1)%columnNUmber == 0)
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber+1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:btnTemp];
+                }
+                 [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+                
+            }
+            
+            
+            
+        }
+        
+        
+        //bottom
+        if (tag+columnNUmber >= 0 && tag+columnNUmber < rowNumber*columnNUmber)
+        {
+            
+            btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber];
+            if (btnTemp.mineNumber <= 0)
+            {
+                [self showBtnNumber:btnTemp];
+            }
+             [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            
+        }
+        
+        //bottom left
+        if (tag+columnNUmber-1 >= 0 && tag+columnNUmber-1 < rowNumber*columnNUmber)
+        {
+            
+            
+            if ((tag+columnNUmber-1)%columnNUmber == (columnNUmber-1))
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber-1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:btnTemp];
+                }
+                 [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            }
+            
+            
+        }
+        
+        
+        //top right
+        if (tag+columnNUmber+1 >= 0 && tag+columnNUmber+1 < rowNumber*columnNUmber)
+        {
+            
+            if ((tag+columnNUmber+1)%columnNUmber == 0)
+            {
+                
+            }else
+            {
+                btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber+1];
+                if (btnTemp.mineNumber <= 0)
+                {
+                    [self showBtnNumber:btnTemp];
+                }
+                 [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            }
+            
+        }
+        
+        
+        
+    }
+    
+}
+
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
 {
@@ -428,7 +606,27 @@
 -(void)clickMineButton:(JFMineButton*)mineButton
 {
     
+    if (mineButton.isMine || mineButton.mineNumber > 0)
+    {
+        if (mineButton.isMine)
+        {
+            //mine click
+            [mineButton setMineFlag:JFMineButtonFlagWMineExpo];
+        }else
+        {
+            [mineButton setMineFlag:JFMineButtonFlagShowNumber];
+        }
+        mineButton.IsShow = YES;
+    }else
+    {
+        [self showBtnNumber:mineButton];
+        
+    }
+   
 }
+
+
+
 -(void)longPressMineButton:(JFMineButton*)mineButton
 {
     
