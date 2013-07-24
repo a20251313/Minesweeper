@@ -23,6 +23,8 @@
     CGFloat             m_fWidth;
     CGFloat             m_fheight;
     
+    int                 m_iFlagMineNum;     //mine flag number
+    
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;
 @property(nonatomic,retain)JFTitleClickButton *titleView;

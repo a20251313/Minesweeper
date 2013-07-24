@@ -124,7 +124,7 @@
         [labelTime setText:strTime];
     }
     
-    NSLog(@"timeChange:%@",strTime);
+  //  NSLog(@"timeChange:%@",strTime);
 }
 /*
 // Only override drawRect: if you perform custom drawing.

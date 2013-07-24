@@ -10,7 +10,7 @@
 
 typedef enum
 {
-    JFMineButtonFlagNone,
+    JFMineButtonFlagNone = 1,
     JFMineButtonFlagIsMine,
     JFMineButtonFlagIsNotSure,
     JFMineButtonFlagShowMine,
@@ -22,7 +22,7 @@ typedef enum
 
 typedef enum
 {
-    JFUserMarkNone,
+    JFUserMarkNone = 1,
     JFUserMarkQuestion,
     JFUserMarkMine
 }JFUserMark;
@@ -50,6 +50,7 @@ typedef enum
 @property(nonatomic)BOOL isMine;
 @property(nonatomic)JFUserMark userMark;;
 @property(nonatomic)BOOL       IsShow;
+@property(nonatomic)JFMineButtonFlag       buttonFlag;
 
 - (id)initWithFrame:(CGRect)frame withPicNumber:(int)picNumber;
 -(void)modifyPicNumber:(int)picNumber;
