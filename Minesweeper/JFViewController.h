@@ -25,6 +25,9 @@
     
     int                 m_iFlagMineNum;     //mine flag number
     
+    BOOL                m_bIsStart;
+    int                 m_iFlagRightNumber;
+    
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;
 @property(nonatomic,retain)JFTitleClickButton *titleView;

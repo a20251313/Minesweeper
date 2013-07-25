@@ -36,9 +36,9 @@
     
     
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 20;
+    config.mineNumber = 10;
     config.totalButtonNumber = 16*30;
-    config.minePicNumber = 2;
+    config.minePicNumber = 4;
     config.rowNumber = 9;
     config.colummNumber = 9;
     
@@ -114,7 +114,8 @@
     
     }
     
-    [self initPlayViewWithConfig:self.mineConfig];
+    [self startGameWithConfig:self.mineConfig];
+    //[self initPlayViewWithConfig:self.mineConfig];
 }
 
 
@@ -130,8 +131,10 @@
     {
         JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];
         [btn removeFromSuperview];
-        [m_arrayStoreBtn removeAllObjects];
     }
+    [m_arrayStoreBtn removeAllObjects];
+    
+    
     CGFloat  fTempWidth = 48;
     CGFloat  fTempheight = 48;
     
@@ -162,7 +165,7 @@
             fYpoint += fTempheight;
         }
 
-        NSLog(@"fXpoint:%f fYpoint:%f",fXpoint,fYpoint);
+        //NSLog(@"fXpoint:%f fYpoint:%f",fXpoint,fYpoint);
         JFMineButton  *btnTemp = [[JFMineButton alloc] initWithFrame:CGRectMake(fXpoint, fYpoint, fTempWidth, fTempheight) withPicNumber:self.mineConfig.minePicNumber];
         btnTemp.mineNumber = 0;
         btnTemp.delegate = self;
@@ -842,6 +845,7 @@
         }
     }else
     {
+        return;
         //fail 
         for (int i = 0; i < [array count]; i++)
         {
@@ -866,7 +870,10 @@
             
             if (btn.isMine  && btn.buttonFlag == JFMineButtonFlagNone)
             {
-                [btn setMineFlag:JFMineButtonFlagWMineExpo];
+                
+                //do nothing
+                return;
+               // [btn setMineFlag:JFMineButtonFlagWMineExpo];
             }
         
         
@@ -876,6 +883,20 @@
     
 }
 
+
+-(void)startGameWithConfig:(JFMineLevelConfig *)TemmineConfig
+{
+    
+    if (self.mineConfig != TemmineConfig)
+    {
+        self.mineConfig  = TemmineConfig;
+    }
+    
+    m_bIsStart = YES;
+    [self initPlayViewWithConfig:self.mineConfig];
+    [self.titleView startTimer];
+    
+}
 -(void)GameOver:(JFMineButton*)btn
 {
     
@@ -915,7 +936,10 @@
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
 {
-    m_iFlagMineNum = 0;    
+    m_iFlagMineNum = self.mineConfig.mineNumber;
+    m_iFlagRightNumber = 0;
+    [self startGameWithConfig:self.mineConfig];
+    
 }
 
 
@@ -924,6 +948,7 @@
     if (mineButton.isMine && mineButton.buttonFlag != JFMineButtonFlagIsMine)
     {
         [self GameOver:mineButton];
+        [mineButton setMineFlag:JFMineButtonFlagWMineExpo];
         return;
     }
  
@@ -958,15 +983,29 @@
     if (mineButton.buttonFlag == JFMineButtonFlagNone)
     {
         [mineButton setMineFlag:JFMineButtonFlagIsMine];
-        m_iFlagMineNum++;
+        if (mineButton.isMine)
+        {
+            m_iFlagRightNumber++;
+        }
+        m_iFlagMineNum--;
     }else if (mineButton.buttonFlag == JFMineButtonFlagIsMine)
     {
         [mineButton setMineFlag:JFMineButtonFlagIsNotSure];
-        m_iFlagMineNum--;
+        if (mineButton.isMine)
+        {
+            m_iFlagRightNumber--;
+        }
+        m_iFlagMineNum++;
     }else if (mineButton.buttonFlag == JFMineButtonFlagIsNotSure)
     {
         [mineButton setMineFlag:JFMineButtonFlagNone];
     }
+    
+    if (m_iFlagMineNum <= 0)
+    {
+        m_iFlagMineNum = 0;
+    }
+    [self.titleView setMineFlagNumber:m_iFlagMineNum];
     
 }
 

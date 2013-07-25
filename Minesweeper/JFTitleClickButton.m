@@ -69,6 +69,20 @@
 }
 
 
+
+-(void)setMineFlagNumber:(int)flagNumber
+{
+    UILabel  *label = (UILabel *)[self viewWithTag:LeftLabelTag];
+    if (flagNumber < 10)
+    {
+       [label setText:[NSString stringWithFormat:@"0%d",flagNumber]]; 
+    }else
+    {
+        [label setText:[NSString stringWithFormat:@"0%d",flagNumber]]; 
+    }
+    
+}
+
 -(void)startTimer
 {
     m_iSeconds = 0;

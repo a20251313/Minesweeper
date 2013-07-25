@@ -31,7 +31,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-base.png",m_ipicMynumer]] forState:UIControlStateNormal];
+        [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile.png",m_ipicMynumer]] forState:UIControlStateNormal];
         
         UITapGestureRecognizer  *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMineButton:)];
         [self addGestureRecognizer:tap];
@@ -92,7 +92,7 @@
     switch (flag)
     {
         case JFMineButtonFlagNone:
-             [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-base.png",m_ipicMynumer]] forState:UIControlStateNormal];
+             [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile.png",m_ipicMynumer]] forState:UIControlStateNormal];
             break;
         case JFMineButtonFlagIsMine:
              [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_flag.png",m_ipicMynumer]] forState:UIControlStateNormal];
@@ -129,7 +129,7 @@
             [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_flag.png",m_ipicMynumer]] forState:UIControlStateNormal];
             break;
         case JFUserMarkNone:
-            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-base.png",m_ipicMynumer]] forState:UIControlStateNormal];
+            [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile.png",m_ipicMynumer]] forState:UIControlStateNormal];
             break;
         case JFUserMarkQuestion:
             [self setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d-tile_question.png",m_ipicMynumer]] forState:UIControlStateNormal];

@@ -34,4 +34,5 @@
 -(void)startTimer;
 
 - (id)initWithFrame:(CGRect)frame WithConfig:(JFMineLevelConfig*)config;
+-(void)setMineFlagNumber:(int)flagNumber;
 @end
