@@ -116,7 +116,7 @@
             break;
     }
     
-    NSLog(@"%@",self);
+  //  NSLog(@"%@",self);
 }
 
 -(void)showUserMark:(JFUserMark)mark

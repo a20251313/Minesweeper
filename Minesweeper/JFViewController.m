@@ -36,11 +36,11 @@
     
     
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 60;
+    config.mineNumber = 20;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 2;
-    config.rowNumber = 16;
-    config.colummNumber = 30;
+    config.rowNumber = 9;
+    config.colummNumber = 9;
     
     self.mineConfig = config;
     [config release];
@@ -164,11 +164,13 @@
 
         NSLog(@"fXpoint:%f fYpoint:%f",fXpoint,fYpoint);
         JFMineButton  *btnTemp = [[JFMineButton alloc] initWithFrame:CGRectMake(fXpoint, fYpoint, fTempWidth, fTempheight) withPicNumber:self.mineConfig.minePicNumber];
+        btnTemp.mineNumber = 0;
         btnTemp.delegate = self;
         btnTemp.isMine = NO;
         btnTemp.tag = i;
+        btnTemp.buttonFlag = JFMineButtonFlagNone;
         [m_scorllView addSubview:btnTemp];
-         [m_arrayStoreBtn addObject:btnTemp];
+        [m_arrayStoreBtn addObject:btnTemp];
         [btnTemp release];
 
         fXpoint+= fTempWidth;
@@ -206,16 +208,15 @@
         [setNumber addObject:[NSNumber numberWithLong:number]];
         
         JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:number];
+        btn.mineNumber = 0;
         btn.isMine = YES;
-        NSLog(@"number:%ld",number);
-        
-        
+      //  NSLog(@"number:%ld",number); 
     }
     
-    NSLog(@"count:%d setNumber:%@",setNumber.count,setNumber);
+//    NSLog(@"count:%d setNumber:%@",setNumber.count,setNumber);
     
     [self calutuleMineNumber];
-    [m_scorllView setContentSize:CGSizeMake(self.mineConfig.rowNumber*fTempWidth, self.mineConfig.colummNumber*fTempheight)];
+    [m_scorllView setContentSize:CGSizeMake(self.mineConfig.colummNumber*fTempWidth, self.mineConfig.rowNumber*fTempheight)];
     [m_scorllView setContentOffset:CGPointMake(0, 0)];
     
 }
@@ -227,13 +228,7 @@
     
     for (int i = 0; i < [m_arrayStoreBtn count]; i++)
     {
-        JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];
-        if (btn.isMine)
-        {
-           // [btn setMineFlag:JFMineButtonFlagShowMine];
-            continue;
-        }
-        
+        JFMineButton  *btn = [m_arrayStoreBtn objectAtIndex:i];        
         int number = [self getAroundMineNumber:i mineConfig:self.mineConfig];
         btn.mineNumber = number;
         
@@ -421,7 +416,7 @@
 
 -(void)showBtnNumber:(JFMineButton *)mineButton
 {
-    if (mineButton.IsShow)
+    if (mineButton.IsShow )
     {
         return;
     }
@@ -436,7 +431,7 @@
     {
         
         JFMineButton  *btnTemp = nil;
-        //left isMine
+        //left 
         if (tag-1 >= 0 && tag-1 < rowNumber*columnNUmber)
         {
             if ((tag-1)%columnNUmber == (columnNUmber-1))
@@ -615,6 +610,7 @@
     int  rowNumber = self.mineConfig.rowNumber;
     int  columnNUmber= self.mineConfig.colummNumber;
     int count = 0;
+    int  errorFlagNumber = 0;
     
     
    
@@ -632,6 +628,11 @@
                 if (btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
                 {
                     count++;
+                }
+                
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
                 }
                 [array addObject:btnTemp];
                 
@@ -654,6 +655,10 @@
                 {
                     count++;
                 }
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
+                }
                 [array addObject:btnTemp];
             }
             
@@ -668,6 +673,10 @@
             if (btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
             {
                 count++;
+            }
+            if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+            {
+                errorFlagNumber++;
             }
             [array addObject:btnTemp];
             
@@ -687,6 +696,10 @@
                 if (btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
                 {
                     count++;
+                }
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
                 }
                 [array addObject:btnTemp];
                 
@@ -710,6 +723,10 @@
                 {
                     count++;
                 }
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
+                }
                 [array addObject:btnTemp];
                 
             }
@@ -727,6 +744,10 @@
             if (btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
             {
                 count++;
+            }
+            if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+            {
+                errorFlagNumber++;
             }
             [array addObject:btnTemp];
             
@@ -746,6 +767,10 @@
                 if (btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
                 {
                     count++;
+                }
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
                 }
                 [array addObject:btnTemp];
             }
@@ -768,11 +793,23 @@
                 {
                     count++;
                 }
+                if (!btnTemp.isMine && btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+                {
+                    errorFlagNumber++;
+                }
                 [array addObject:btnTemp];
             }
             
         }
         
+    
+    
+    if (errorFlagNumber > 0)
+    {
+    
+        [self GameOver:nil];
+        return;
+    }
     
     if (mineNumber <= count)
     {
@@ -783,9 +820,25 @@
             JFMineButton  *btn = [array objectAtIndex:i];
             if (btn.buttonFlag != JFMineButtonFlagIsNotSure && btn.buttonFlag != JFMineButtonFlagIsMine)
             {
-                [btn setMineFlag:JFMineButtonFlagShowNumber];
-                btn.IsShow = YES;
+                
+                if (btn.mineNumber > 0)
+                {
+                     [btn setMineFlag:JFMineButtonFlagShowNumber];
+                     // btn.IsShow = YES;
+                }else
+                {
+                    [self showBtnNumber:btn];
+                }
+            }else
+            {
+                if (btn.mineNumber <= 0 && btn.buttonFlag == JFMineButtonFlagNone)
+                {
+                    [self showBtnNumber:btn];
+                }
+                
             }
+            
+          
         }
     }else
     {
@@ -810,6 +863,11 @@
             {
                 [btn setMineFlag:JFMineButtonFlagShowNumber];
             }
+            
+            if (btn.isMine  && btn.buttonFlag == JFMineButtonFlagNone)
+            {
+                [btn setMineFlag:JFMineButtonFlagWMineExpo];
+            }
         
         
         }
@@ -817,21 +875,60 @@
     }
     
 }
+
+-(void)GameOver:(JFMineButton*)btn
+{
+    
+    for (int i = 0; i < [m_arrayStoreBtn count]; i++)
+    {
+        JFMineButton  *btnTemp = [m_arrayStoreBtn objectAtIndex:i];
+        
+        if (btnTemp.isMine)
+        {
+            
+            [btnTemp setMineFlag:JFMineButtonFlagShowMine];
+            /*
+            if (btnTemp.buttonFlag == JFMineButtonFlagNone ||
+                btnTemp.buttonFlag == JFMineButtonFlagIsMine ||
+                btnTemp.buttonFlag == JFMineButtonFlagIsNotSure)
+            {
+                [btnTemp setMineFlag:JFMineButtonFlagShowMine];
+            }else
+            {
+                
+            }*/
+            
+        }else
+        {
+            if (btnTemp.buttonFlag == JFMineButtonFlagIsMine)
+            {
+                [btnTemp setMineFlag:JFMineButtonFlagWrongMine];
+            }else
+            {
+                [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+            }
+        }
+        
+    }
+       NSLog(@"game over");
+}
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
 {
-    m_iFlagMineNum = 0;
-    
-    
-    
-    
+    m_iFlagMineNum = 0;    
 }
 
 
 -(void)clickMineButton:(JFMineButton*)mineButton
 {
-    
-    if (mineButton.buttonFlag == JFMineButtonFlagIsMine || mineButton.buttonFlag == JFMineButtonFlagIsNotSure)
+    if (mineButton.isMine && mineButton.buttonFlag != JFMineButtonFlagIsMine)
+    {
+        [self GameOver:mineButton];
+        return;
+    }
+ 
+    if (mineButton.buttonFlag == JFMineButtonFlagIsMine || mineButton.buttonFlag == JFMineButtonFlagShowMine ||
+        mineButton.buttonFlag == JFMineButtonFlagWMineExpo || mineButton.buttonFlag == JFMineButtonFlagWrongMine)
     {
         return;
     }
@@ -843,22 +940,13 @@
         return;
     }
     
+
     
-    if (mineButton.isMine || mineButton.mineNumber > 0)
-    {
-        if (mineButton.isMine)
-        {
-            //mine click
-            [mineButton setMineFlag:JFMineButtonFlagWMineExpo];
-        }else
-        {
-            [mineButton setMineFlag:JFMineButtonFlagShowNumber];
-        }
-        mineButton.IsShow = YES;
-    }else
+    //follow are no mine
+    if (mineButton.mineNumber >= 0 && mineButton.buttonFlag == JFMineButtonFlagNone)
     {
         [self showBtnNumber:mineButton];
-        
+        return;
     }
    
 }
