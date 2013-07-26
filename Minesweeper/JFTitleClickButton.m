@@ -88,6 +88,7 @@
     m_iSeconds = 0;
     if (m_timer)
     {
+        [m_timer invalidate];
         [m_timer release];
          m_timer = nil;
     }

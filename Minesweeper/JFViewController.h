@@ -10,6 +10,7 @@
 #import "JFTitleClickButton.h"
 #import "JFMineLevelConfig.h"
 #import "JFMineButton.h"
+#import "CABasicAnimation+someAniForProp.h"
 
 
 @interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate>
@@ -27,6 +28,8 @@
     
     BOOL                m_bIsStart;
     int                 m_iFlagRightNumber;
+    
+    CGFloat             m_fMineWidth;
     
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;

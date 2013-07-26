@@ -8,7 +8,7 @@
 
 #import "JFViewController.h"
 
-
+#define MineflagViewTag             1123123
 
 @interface JFViewController ()
 
@@ -34,13 +34,13 @@
     
     [super viewDidLoad];
     
-    
+    m_fMineWidth = 48;
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 10;
+    config.mineNumber = 80;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 4;
-    config.rowNumber = 9;
-    config.colummNumber = 9;
+    config.rowNumber = 20;
+    config.colummNumber = 20;
     
     self.mineConfig = config;
     [config release];
@@ -121,6 +121,10 @@
 
 -(void)initPlayViewWithConfig:(JFMineLevelConfig*)config
 {
+    
+    [self.titleView setMineFlagNumber:config.mineNumber];
+    m_iFlagMineNum = config.mineNumber;
+    
     if (config != self.mineConfig)
     {
         self.mineConfig = config;
@@ -135,8 +139,10 @@
     [m_arrayStoreBtn removeAllObjects];
     
     
-    CGFloat  fTempWidth = 48;
-    CGFloat  fTempheight = 48;
+    
+    m_scorllView.layer.contents = (id)[UIImage imageNamed:[NSString stringWithFormat:@"%d-background",self.mineConfig.minePicNumber]].CGImage;
+    CGFloat  fTempWidth = m_fMineWidth;
+    CGFloat  fTempheight = m_fMineWidth;
     
     CGFloat  fYpoint = 0;
     CGFloat  fXpoint = 0;
@@ -845,14 +851,24 @@
         }
     }else
     {
-        return;
+      //  return;
         //fail 
         for (int i = 0; i < [array count]; i++)
         {
             JFMineButton  *btn = [array objectAtIndex:i];
             btn.IsShow = YES;
             
-            if (btn.isMine && (btn.buttonFlag == JFMineButtonFlagIsMine || btn.buttonFlag == JFMineButtonFlagIsNotSure))
+            
+            if (JFMineButtonFlagNone == btn.buttonFlag)
+            {
+                CABasicAnimation  *ani =  [CABasicAnimation aniRotate:0.25 tovalue:-M_PI_4/2 fromValue:0];// [CABasicAnimation aniRotate:0.25 floatRotate:0.1 view:nil];
+               // btn.layer.anchorPoint = CGPointMake(0.5, 0.5);
+                 [btn.layer addAnimation:ani forKey:nil];
+                
+            }
+           
+            
+           /* if (btn.isMine && (btn.buttonFlag == JFMineButtonFlagIsMine || btn.buttonFlag == JFMineButtonFlagIsNotSure))
             {
                 [btn setMineFlag:JFMineButtonFlagWMineExpo];
             }
@@ -874,7 +890,7 @@
                 //do nothing
                 return;
                // [btn setMineFlag:JFMineButtonFlagWMineExpo];
-            }
+            }*/
         
         
         }
@@ -883,6 +899,65 @@
     
 }
 
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([anim.name isEqualToString:@"flag.png"])
+    {
+        UIView  *view = [anim valueForKey:@"fromView"];
+        JFMineButton  *btnTemp = [anim valueForKey:@"toView"];
+        [view removeFromSuperview];
+        [btnTemp setMineFlag:JFMineButtonFlagIsMine];
+        
+        [btnTemp.layer addAnimation:[CABasicAnimation aniRotate:0.245 tovalue:M_PI_4/2 fromValue:0] forKey:nil];
+    }
+}
+
+
+-(void)aniForFlagToSomeMineBtn:(JFMineButton*)mineBtn
+{
+
+   // CGRect  frame = [UIApplication sharedApplication];
+    UIImageView  *view = [[UIImageView alloc] initWithFrame:CGRectMake((m_fWidth-m_fMineWidth)/2, 5, m_fMineWidth, m_fMineWidth)];
+    view.tag = MineflagViewTag;
+    view.image = [UIImage imageNamed:@"flag.png"];
+    [self.view addSubview:view];
+    
+    CGPoint topoint = [self.view convertPoint:mineBtn.center fromView:m_scorllView];
+    //CGPointMake((int)mineBtn.center.x%(int)m_fWidth, (int)mineBtn.center.y%(int)m_fheight)
+    CABasicAnimation  *ani = [CABasicAnimation aniWithPosition:0.35 fromValue:view.center tovalue:topoint];
+    ani.delegate = self;
+    ani.name = @"flag.png";
+    [ani setValue:view forKey:@"fromView"];
+    [ani setValue:mineBtn forKey:@"toView"];
+    [view.layer addAnimation:ani forKey:nil];
+    [view.layer addAnimation:[CABasicAnimation aniWithScale:0.35 tovalue:0.65 fromValue:1] forKey:nil];
+    [view release];
+}
+
+-(void)aniForFlagQuestionMineBtn:(JFMineButton*)mineBtn
+{
+    CGPoint frompoint = [self.view convertPoint:mineBtn.center fromView:m_scorllView];
+    
+    UIImageView  *view = [[UIImageView alloc] initWithFrame:CGRectMake((m_fWidth-m_fMineWidth)/2, 5, m_fMineWidth, m_fMineWidth)];
+    view.tag = MineflagViewTag;
+    view.image = [UIImage imageNamed:@"flag.png"];
+    [self.view addSubview:view];
+    view.center = frompoint;
+    
+    
+    CGPoint  topoint = CGPointMake(-24, frompoint.y);
+    CABasicAnimation  *ani = [CABasicAnimation aniWithPosition:0.35 fromValue:view.center tovalue:topoint];
+    ani.delegate = self;
+    ani.name = @"flagquestion";
+    [ani setValue:view forKey:@"fromView"];
+    [view.layer addAnimation:ani forKey:nil];
+    
+    CABasicAnimation  *aniRote = [CABasicAnimation aniRotate:0.20 tovalue:M_PI_4/2 fromValue:0];
+    aniRote.repeatCount = 2;
+    [mineBtn.layer addAnimation:aniRote forKey:nil];
+    [view release];
+}
 
 -(void)startGameWithConfig:(JFMineLevelConfig *)TemmineConfig
 {
@@ -973,7 +1048,7 @@
         [self showBtnNumber:mineButton];
         return;
     }
-   
+    [mineButton.layer addAnimation:[CABasicAnimation aniAlpha:0.45 fromValue:0.7 tovalue:1] forKey:@""];
 }
 
 
@@ -982,7 +1057,8 @@
 {
     if (mineButton.buttonFlag == JFMineButtonFlagNone)
     {
-        [mineButton setMineFlag:JFMineButtonFlagIsMine];
+        [self aniForFlagToSomeMineBtn:mineButton];
+       // [mineButton setMineFlag:JFMineButtonFlagIsMine];
         if (mineButton.isMine)
         {
             m_iFlagRightNumber++;
@@ -996,8 +1072,13 @@
             m_iFlagRightNumber--;
         }
         m_iFlagMineNum++;
+        [self aniForFlagQuestionMineBtn:mineButton];
     }else if (mineButton.buttonFlag == JFMineButtonFlagIsNotSure)
     {
+        
+        CABasicAnimation *ani = [CABasicAnimation aniRotate:0.25 tovalue:M_PI_4/2 fromValue:0];
+        ani.repeatCount = 2;
+        [mineButton.layer addAnimation:ani forKey:nil];
         [mineButton setMineFlag:JFMineButtonFlagNone];
     }
     

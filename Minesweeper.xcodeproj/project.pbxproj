@@ -23,6 +23,9 @@
 		F5049942178FD906007BBFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504991D178FD906007BBFD7 /* Foundation.framework */; };
 		F504994A178FD906007BBFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5049948178FD906007BBFD7 /* InfoPlist.strings */; };
 		F504994D178FD906007BBFD7 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F504994C178FD906007BBFD7 /* MinesweeperTests.m */; };
+		F5535C1617A21CF600BC5237 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
+		F56BA4C417A21AA50057AE85 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
+		F56BA4C617A21AFF0057AE85 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */; };
 		F5A0EC551796817A009407FC /* JFMineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A0EC541796817A009407FC /* JFMineButton.m */; };
 		F5A0F03417968BA4009407FC /* 1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0EEF917968BA2009407FC /* 1-1.png */; };
 		F5A0F03517968BA4009407FC /* 1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0EEFA17968BA2009407FC /* 1-2.png */; };
@@ -372,6 +375,9 @@
 		F5049949178FD906007BBFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F504994B178FD906007BBFD7 /* MinesweeperTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinesweeperTests.h; sourceTree = "<group>"; };
 		F504994C178FD906007BBFD7 /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
+		F56BA4C217A21AA50057AE85 /* CABasicAnimation+someAniForProp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+someAniForProp.h"; sourceTree = "<group>"; };
+		F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+someAniForProp.m"; sourceTree = "<group>"; };
+		F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F5A0EC531796817A009407FC /* JFMineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMineButton.h; sourceTree = "<group>"; };
 		F5A0EC541796817A009407FC /* JFMineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMineButton.m; sourceTree = "<group>"; };
 		F5A0EEF917968BA2009407FC /* 1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-1.png"; sourceTree = "<group>"; };
@@ -696,6 +702,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56BA4C617A21AFF0057AE85 /* QuartzCore.framework in Frameworks */,
 				F504991C178FD906007BBFD7 /* UIKit.framework in Frameworks */,
 				F504991E178FD906007BBFD7 /* Foundation.framework in Frameworks */,
 				F5049920178FD906007BBFD7 /* CoreGraphics.framework in Frameworks */,
@@ -737,6 +744,7 @@
 		F504991A178FD906007BBFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */,
 				F504991B178FD906007BBFD7 /* UIKit.framework */,
 				F504991D178FD906007BBFD7 /* Foundation.framework */,
 				F504991F178FD906007BBFD7 /* CoreGraphics.framework */,
@@ -796,6 +804,8 @@
 		F5A0EC5617968181009407FC /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				F56BA4C217A21AA50057AE85 /* CABasicAnimation+someAniForProp.h */,
+				F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */,
 				F5F6D902179CF960005A0233 /* JFTitleClickButton.h */,
 				F5F6D903179CF960005A0233 /* JFTitleClickButton.m */,
 				F5A0EC531796817A009407FC /* JFMineButton.h */,
@@ -1573,6 +1583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5535C1617A21CF600BC5237 /* CABasicAnimation+someAniForProp.m in Sources */,
 				F5049928178FD906007BBFD7 /* main.m in Sources */,
 				F504992C178FD906007BBFD7 /* JFAppDelegate.m in Sources */,
 				F5049935178FD906007BBFD7 /* JFViewController.m in Sources */,
@@ -1587,6 +1598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F504994D178FD906007BBFD7 /* MinesweeperTests.m in Sources */,
+				F56BA4C417A21AA50057AE85 /* CABasicAnimation+someAniForProp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

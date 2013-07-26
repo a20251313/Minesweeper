@@ -43,11 +43,17 @@
         
         
         m_bIsMine = NO;
+        
+        [self addTarget:self action:@selector(eventInfo:) forControlEvents:UIControlEventAllTouchEvents];
         // Initialization code
     }
     return self;
 }
 
+-(void)eventInfo:(id)info
+{
+    NSLog(@"info:%@",info);
+}
 
 
 -(void)clickMineButton:(id)sender
