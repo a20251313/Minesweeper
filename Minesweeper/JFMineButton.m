@@ -44,7 +44,7 @@
         
         m_bIsMine = NO;
         
-        [self addTarget:self action:@selector(eventInfo:) forControlEvents:UIControlEventAllTouchEvents];
+      //  [self addTarget:self action:@selector(eventInfo:) forControlEvents:UIControlEventAllTouchEvents];
         // Initialization code
     }
     return self;
@@ -69,7 +69,7 @@
 -(void)longPressMineButton:(UILongPressGestureRecognizer *)tap
 {
     
-    if (tap.state != UIGestureRecognizerStateEnded)
+    if (tap.state != UIGestureRecognizerStateBegan)
     {
         return;
     }

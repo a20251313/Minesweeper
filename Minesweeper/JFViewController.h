@@ -11,6 +11,7 @@
 #import "JFMineLevelConfig.h"
 #import "JFMineButton.h"
 #import "CABasicAnimation+someAniForProp.h"
+#import "NSMutableSet+addObjects.h"
 
 
 @interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate>

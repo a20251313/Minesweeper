@@ -36,7 +36,7 @@
     
     m_fMineWidth = 48;
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 80;
+    config.mineNumber = 20;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 4;
     config.rowNumber = 20;
@@ -423,9 +423,110 @@
 
 
 
+
+-(NSMutableSet*)getSetAccordIndex:(int)tag 
+{
+    
+    NSMutableSet  *set = [NSMutableSet setWithCapacity:8];
+    return set;
+    int  rowNumber = self.mineConfig.rowNumber;
+    int  columnNUmber= self.mineConfig.colummNumber;
+    int totalNumber = self.mineConfig.rowNumber*self.mineConfig.colummNumber;
+    if (tag-1 > 0 && tag-1 < totalNumber)
+    {
+        
+        if ((tag-1)%columnNUmber != (columnNUmber-1))
+        {
+           [set addObject:[NSNumber numberWithInt:tag-1]]; 
+        }
+        
+        
+    }
+    
+    if (tag+1 > 0 && tag+1 < totalNumber)
+    {
+        if ((tag+1)%columnNUmber != 0)
+        {
+                 [set addObject:[NSNumber numberWithInt:tag+1]];
+        }
+        
+    }
+    
+    //top
+    if (tag-columnNUmber >= 0 && tag-columnNUmber < rowNumber*columnNUmber)
+    {
+        
+        [set addObject:[NSNumber numberWithInt:tag-columnNUmber]];        
+    }
+    
+    //top left
+    if (tag-columnNUmber-1 >= 0 && tag-columnNUmber-1 < rowNumber*columnNUmber)
+    {
+        
+        
+        if ((tag-columnNUmber-1)%columnNUmber != (columnNUmber-1))
+        {
+            [set addObject:[NSNumber numberWithInt:tag-columnNUmber-1]];
+        }
+        
+        
+    }
+    
+    //top right
+    if (tag-columnNUmber+1 >= 0 && tag-columnNUmber+1 < rowNumber*columnNUmber)
+    {
+        
+        if ((tag-columnNUmber+1)%columnNUmber != 0)
+        {
+            [set addObject:[NSNumber numberWithInt:tag-columnNUmber+1]];
+        }
+        
+        
+        
+    }
+    
+    
+    //bottom
+    if (tag+columnNUmber >= 0 && tag+columnNUmber < rowNumber*columnNUmber)
+    {
+        
+        [set addObject:[NSNumber numberWithInt:tag+columnNUmber]];
+        
+    }
+    
+    
+    //bottom left
+    if (tag+columnNUmber-1 >= 0 && tag+columnNUmber-1 < rowNumber*columnNUmber)
+    {
+        
+        
+        if ((tag+columnNUmber-1)%columnNUmber != (columnNUmber-1))
+        {
+            [set addObject:[NSNumber numberWithInt:tag+columnNUmber-1]];
+        }
+        
+        
+    }
+    
+    
+    
+    //top right
+    if (tag+columnNUmber+1 >= 0 && tag+columnNUmber+1 < rowNumber*columnNUmber)
+    {
+        
+        if ((tag+columnNUmber+1)%columnNUmber != 0)
+        {
+            [set addObject:[NSNumber numberWithInt:tag+columnNUmber+1]];
+        }
+        
+    }
+    
+    return set;
+}
+
 -(void)showBtnNumber:(JFMineButton *)mineButton
 {
-    if (mineButton.IsShow )
+    if (mineButton.IsShow || mineButton.buttonFlag != JFMineButtonFlagNone)
     {
         return;
     }
@@ -436,6 +537,10 @@
     [mineButton setMineFlag:JFMineButtonFlagShowNumber];
     
 
+    NSMutableSet  *set = [NSMutableSet setWithCapacity:10];
+    
+
+    
     if (mineButton.mineNumber <= 0)
     {
         
@@ -451,6 +556,8 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag-1];
                 if (btnTemp.mineNumber <= 0)
                 {
+                    
+                    [set addobjectFromSet:[self getSetAccordIndex:tag-1]];
                     [self showBtnNumber:btnTemp];
                 }
                 
@@ -471,7 +578,17 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag+1];
                 if (btnTemp.mineNumber <= 0)
                 {
-                    [self showBtnNumber:mineButton];
+                    
+                    if ([set containsObject:[NSNumber numberWithInt:tag+1]])
+                    {
+                        
+                    }else
+                    {
+                         [set addobjectFromSet:[self getSetAccordIndex:tag+1]];
+                         [self showBtnNumber:mineButton];
+                      
+                    }
+                   
                     
                 }
                 
@@ -488,7 +605,19 @@
             btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber];
             if (btnTemp.mineNumber <= 0)
             {
-                [self showBtnNumber:btnTemp];
+                
+                if ([set containsObject:[NSNumber numberWithInt:tag-columnNUmber]])
+                {
+                    
+                }else
+                {
+                    [set addobjectFromSet:[self getSetAccordIndex:tag-columnNUmber]];
+                    [self showBtnNumber:mineButton];
+                    
+                }
+                
+                
+               // [self showBtnNumber:btnTemp];
             }
              [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
             
@@ -507,7 +636,15 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber-1];
                 if (btnTemp.mineNumber <= 0)
                 {
-                    [self showBtnNumber:btnTemp];
+                    if ([set containsObject:[NSNumber numberWithInt:tag-columnNUmber-1]])
+                    {
+                        
+                    }else
+                    {
+                        [set addobjectFromSet:[self getSetAccordIndex:tag-columnNUmber-1]];
+                        [self showBtnNumber:mineButton];
+                      
+                    }
                 }
                  [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
                 
@@ -529,7 +666,17 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag-columnNUmber+1];
                 if (btnTemp.mineNumber <= 0)
                 {
-                    [self showBtnNumber:btnTemp];
+                    
+                    if ([set containsObject:[NSNumber numberWithInt:tag-columnNUmber+1]])
+                    {
+                        
+                    }else
+                    {
+                        [set addobjectFromSet:[self getSetAccordIndex:tag-columnNUmber+1]];
+                        [self showBtnNumber:mineButton];
+                    }
+                    
+               
                 }
                  [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
                 
@@ -547,7 +694,14 @@
             btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber];
             if (btnTemp.mineNumber <= 0)
             {
-                [self showBtnNumber:btnTemp];
+                if ([set containsObject:[NSNumber numberWithInt:tag+columnNUmber]])
+                {
+                    
+                }else
+                {
+                    [set addobjectFromSet:[self getSetAccordIndex:tag+columnNUmber]];
+                    [self showBtnNumber:mineButton];
+                }
             }
              [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
             
@@ -566,7 +720,14 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber-1];
                 if (btnTemp.mineNumber <= 0)
                 {
-                    [self showBtnNumber:btnTemp];
+                    if ([set containsObject:[NSNumber numberWithInt:tag+columnNUmber-1]])
+                    {
+                        
+                    }else
+                    {
+                        [set addobjectFromSet:[self getSetAccordIndex:tag+columnNUmber-1]];
+                        [self showBtnNumber:mineButton];
+                    }
                 }
                  [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
             }
@@ -587,7 +748,14 @@
                 btnTemp = [m_arrayStoreBtn objectAtIndex:tag+columnNUmber+1];
                 if (btnTemp.mineNumber <= 0)
                 {
-                    [self showBtnNumber:btnTemp];
+                    if ([set containsObject:[NSNumber numberWithInt:tag+columnNUmber+1]])
+                    {
+                        
+                    }else
+                    {
+                        [set addobjectFromSet:[self getSetAccordIndex:tag+columnNUmber+1]];
+                        [self showBtnNumber:mineButton];
+                    }
                 }
                  [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
             }

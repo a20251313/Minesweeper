@@ -23,6 +23,7 @@
 		F5049942178FD906007BBFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504991D178FD906007BBFD7 /* Foundation.framework */; };
 		F504994A178FD906007BBFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5049948178FD906007BBFD7 /* InfoPlist.strings */; };
 		F504994D178FD906007BBFD7 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F504994C178FD906007BBFD7 /* MinesweeperTests.m */; };
+		F510E5FB17A611D80060C06F /* NSMutableSet+addObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */; };
 		F5535C1617A21CF600BC5237 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C417A21AA50057AE85 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C617A21AFF0057AE85 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */; };
@@ -375,6 +376,8 @@
 		F5049949178FD906007BBFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F504994B178FD906007BBFD7 /* MinesweeperTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinesweeperTests.h; sourceTree = "<group>"; };
 		F504994C178FD906007BBFD7 /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
+		F510E5F917A611D80060C06F /* NSMutableSet+addObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+addObjects.h"; sourceTree = "<group>"; };
+		F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+addObjects.m"; sourceTree = "<group>"; };
 		F56BA4C217A21AA50057AE85 /* CABasicAnimation+someAniForProp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+someAniForProp.h"; sourceTree = "<group>"; };
 		F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+someAniForProp.m"; sourceTree = "<group>"; };
 		F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -812,6 +815,8 @@
 				F5A0EC541796817A009407FC /* JFMineButton.m */,
 				F5F6D905179D05DB005A0233 /* JFMineLevelConfig.h */,
 				F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */,
+				F510E5F917A611D80060C06F /* NSMutableSet+addObjects.h */,
+				F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1590,6 +1595,7 @@
 				F5A0EC551796817A009407FC /* JFMineButton.m in Sources */,
 				F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */,
 				F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */,
+				F510E5FB17A611D80060C06F /* NSMutableSet+addObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
