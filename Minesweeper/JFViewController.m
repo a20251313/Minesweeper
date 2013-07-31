@@ -272,7 +272,30 @@
 
 -(void)clickMenu:(id)sender
 {
+    UITabBarController  *tabbar = [[UITabBarController alloc] init];
     
+    JFSettingViewController   *setControl = [[JFSettingViewController alloc] init];
+
+    
+    JFAppearenceViewController  *appControl = [[JFAppearenceViewController alloc] init];
+    
+    
+    JFHelpViewController        *helpContrl = [[JFHelpViewController alloc] init];
+    
+    
+    JFVictoryViewController    *victContrl = [[JFVictoryViewController alloc] init];
+    
+    NSArray  *arrayControlss = [NSArray arrayWithObjects:setControl,appControl,helpContrl,victContrl,nil];
+    tabbar.viewControllers = arrayControlss;
+    
+    
+    [setControl release];
+    [appControl release];
+    [helpContrl release];
+    [victContrl release];
+    
+    
+    [self.navigationController pushViewController:tabbar animated:YES];
     
     NSLog(@"clickMenu:%@",sender);
 }

@@ -14,15 +14,46 @@
 
 @implementation JFAppearenceViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super init];
+    if (self)
+    {
+    
     }
     return self;
 }
 
+
+-(void)loadView
+{
+    [super loadView];
+    
+    self.title = @"外观";
+    self.tabBarItem.image = [UIImage imageNamed:@""];
+    self.tabBarItem.title = self.title;
+    
+    
+    int  maxCount = 10;
+    CGRect frame = [UIScreen mainScreen].applicationFrame;
+    
+    m_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-44)];
+    m_scrollView.contentSize = CGSizeMake(320*maxCount, frame.size.height-44-44);
+    [self.view addSubview:m_scrollView];
+    
+    
+    
+    
+    
+}
+
+
+-(void)dealloc
+{
+    [m_scrollView release];
+    m_scrollView = nil;
+    [super dealloc];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

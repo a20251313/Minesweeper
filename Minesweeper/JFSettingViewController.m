@@ -39,7 +39,7 @@
 
 -(void)addDataSource:(NSMutableArray *)array
 {
-    NSAssert(array == nil, @"addDataSource array == nil");
+    NSAssert(array != nil, @"addDataSource array == nil");
     
     JFCellDataModel  *model1 = [[JFCellDataModel alloc] init];
     model1.title = @"评分";
@@ -83,16 +83,18 @@
 }
 -(void)loadView
 {
-    
+     [super loadView];
     self.title = @"设置";
+    self.tabBarItem.title = self.title;
+    [self.tabBarItem setImage:[UIImage imageNamed:@"setting.png"]];
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     
-    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-44) style:UITableViewStyleGrouped];
+    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-44) style:UITableViewStyleGrouped];
     m_tableView.delegate = self;
     m_tableView.dataSource = self;
     [self.view addSubview:m_tableView];
     
-    [super loadView];
+   
 }
 
 - (void)viewDidLoad
@@ -126,6 +128,11 @@
 
 
 #pragma mark  UITableViewDataSouurce delegate
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    JFCellDataModel  *model = [m_arrayData objectAtIndex:section];
+    return model.title;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
@@ -173,8 +180,25 @@
             }
             if (model && [model.arraySubText count])
             {
+                
+                UILabel  *label = (UILabel *)[cell.contentView viewWithTag:101];
+                if (label == nil)
+                {
+                    label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 100, 21)];
+                    label.tag = 101;
+                    label.textAlignment = UITextAlignmentLeft;
+                    label.backgroundColor = [UIColor clearColor];
+                    label.textColor = [UIColor colorWithRed:0 green:0 blue:0.5 alpha:1];
+                    label.font = [UIFont systemFontOfSize:17];
+                    [cell.contentView addSubview:label];
+                    [label release];
+                    
+                }
+                
                 strSubText = [model.arraySubText objectAtIndex:indexPath.row];
-                cell.detailTextLabel.text = strSubText;
+                
+                label.text = strSubText;
+               // cell.detailTextLabel.text = strSubText;
             }
             
             if (model && [model.arrayImage count])
@@ -213,8 +237,25 @@
             }
             if (model && [model.arraySubText count])
             {
+                
+                UILabel  *label = (UILabel *)[cell.contentView viewWithTag:101];
+                if (label == nil)
+                {
+                     label = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 120, 21)];
+                    label.tag = 101;
+                    label.textAlignment = UITextAlignmentRight;
+                    label.backgroundColor = [UIColor clearColor];
+                    label.textColor = [UIColor colorWithRed:0 green:0 blue:0.5 alpha:1];
+                    label.font = [UIFont systemFontOfSize:17];
+                    [cell.contentView addSubview:label];
+                    [label release];
+                    
+                }
+                
                 strSubText = [model.arraySubText objectAtIndex:indexPath.row];
-                cell.detailTextLabel.text = strSubText;
+                
+                label.text = strSubText;
+                // cell.detailTextLabel.text = strSubText;
             }
             
             if (model && [model.arrayImage count])
