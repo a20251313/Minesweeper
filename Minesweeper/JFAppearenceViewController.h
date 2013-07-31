@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JFAppearenceViewController : UIViewController
+@interface JFAppearenceViewController : UIViewController<UIScrollViewDelegate,UIPageViewControllerDelegate>
 {
     UIScrollView            *m_scrollView;
     UIPageControl           *m_pageControl;

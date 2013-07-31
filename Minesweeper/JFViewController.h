@@ -36,6 +36,8 @@
     
     CGFloat             m_fMineWidth;
     
+    UITabBarController  *m_tabBar;
+    
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;
 @property(nonatomic,retain)JFTitleClickButton *titleView;

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JFCellDataModel.h"
 
-@interface JFVictoryViewController : UIViewController
+@interface JFVictoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView   *m_tableView;
+    NSMutableArray  *m_arrayData;
+}
 
 @end

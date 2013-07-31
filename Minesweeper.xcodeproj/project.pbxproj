@@ -31,6 +31,7 @@
 		F5535C1617A21CF600BC5237 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C417A21AA50057AE85 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C617A21AFF0057AE85 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */; };
+		F58DF74617A90036009F2732 /* help.txt in Resources */ = {isa = PBXBuildFile; fileRef = F58DF74517A9002F009F2732 /* help.txt */; };
 		F5A0EC551796817A009407FC /* JFMineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A0EC541796817A009407FC /* JFMineButton.m */; };
 		F5A0F03417968BA4009407FC /* 1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0EEF917968BA2009407FC /* 1-1.png */; };
 		F5A0F03517968BA4009407FC /* 1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0EEFA17968BA2009407FC /* 1-2.png */; };
@@ -394,6 +395,7 @@
 		F56BA4C217A21AA50057AE85 /* CABasicAnimation+someAniForProp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+someAniForProp.h"; sourceTree = "<group>"; };
 		F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+someAniForProp.m"; sourceTree = "<group>"; };
 		F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F58DF74517A9002F009F2732 /* help.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = help.txt; sourceTree = "<group>"; };
 		F5A0EC531796817A009407FC /* JFMineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMineButton.h; sourceTree = "<group>"; };
 		F5A0EC541796817A009407FC /* JFMineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFMineButton.m; sourceTree = "<group>"; };
 		F5A0EEF917968BA2009407FC /* 1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-1.png"; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 				F5F2F91A179D0FD200360ED4 /* public resource */,
 				F5F2F91B179D105000360ED4 /* style_change */,
 				F5F2F91C179D108E00360ED4 /* g+ */,
+				F58DF74517A9002F009F2732 /* help.txt */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -1575,6 +1578,7 @@
 				F5A0F16C17968BA4009407FC /* twitter32.png in Resources */,
 				F5A0F16D17968BA4009407FC /* twitter48.png in Resources */,
 				F5A0F16E17968BA4009407FC /* twitter_load.png in Resources */,
+				F58DF74617A90036009F2732 /* help.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
