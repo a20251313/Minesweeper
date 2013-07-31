@@ -36,11 +36,11 @@
     
     m_fMineWidth = 48;
     JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 50;
+    config.mineNumber = 9;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 4;
-    config.rowNumber = 20;
-    config.colummNumber = 20;
+    config.rowNumber = 10;
+    config.colummNumber = 10;
     
     self.mineConfig = config;
     [config release];
@@ -272,6 +272,8 @@
 
 -(void)clickMenu:(id)sender
 {
+    
+    
     NSLog(@"clickMenu:%@",sender);
 }
 -(void)clickInfoAction:(id)sender
@@ -515,9 +517,14 @@
             if (btnTemp.mineNumber <= 0 )
             {
                 
-                [self showBtnNumber:btnTemp];
+                [self performSelector:@selector(showBtnNumber:) withObject:btnTemp];
+               // [self showBtnNumber:btnTemp];
             }
             
+            if (mineButton.buttonFlag == JFMineButtonFlagNone)
+            {
+                [btnTemp.layer addAnimation:[CABasicAnimation aniAlpha:0.2 fromValue:0.75 tovalue:1] forKey:nil];
+            }
             [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
             btnTemp.IsShow = YES;
         }
@@ -735,6 +742,16 @@
     }
        NSLog(@"game over");
 }
+
+-(void)WinGame:(JFMineButton *)mineButton
+{
+    
+    int second = [self.titleView stopTimer];
+    
+    
+    DLOG(@"WinGame:%@ second:%d",mineButton,second);
+    
+}
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
 {
@@ -791,6 +808,11 @@
             m_iFlagRightNumber++;
         }
         m_iFlagMineNum--;
+        
+        if (m_iFlagRightNumber == self.mineConfig.mineNumber)
+        {
+            [self WinGame:mineButton];
+        }
     }else if (mineButton.buttonFlag == JFMineButtonFlagIsMine)
     {
         [mineButton setMineFlag:JFMineButtonFlagIsNotSure];

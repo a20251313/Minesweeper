@@ -24,6 +24,11 @@
 		F504994A178FD906007BBFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5049948178FD906007BBFD7 /* InfoPlist.strings */; };
 		F504994D178FD906007BBFD7 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F504994C178FD906007BBFD7 /* MinesweeperTests.m */; };
 		F510E5FB17A611D80060C06F /* NSMutableSet+addObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */; };
+		F51E3B6917A8BCA00024D351 /* JFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B6817A8BCA00024D351 /* JFSettingViewController.m */; };
+		F51E3B6C17A8C0CA0024D351 /* JFCellDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B6B17A8C0CA0024D351 /* JFCellDataModel.m */; };
+		F51E3B6F17A8DFC90024D351 /* JFHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B6E17A8DFC90024D351 /* JFHelpViewController.m */; };
+		F51E3B7217A8DFEF0024D351 /* JFAppearenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B7117A8DFEF0024D351 /* JFAppearenceViewController.m */; };
+		F51E3B7517A8E0490024D351 /* JFVictoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B7417A8E0490024D351 /* JFVictoryViewController.m */; };
 		F5535C1617A21CF600BC5237 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C417A21AA50057AE85 /* CABasicAnimation+someAniForProp.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */; };
 		F56BA4C617A21AFF0057AE85 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */; };
@@ -378,6 +383,16 @@
 		F504994C178FD906007BBFD7 /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
 		F510E5F917A611D80060C06F /* NSMutableSet+addObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+addObjects.h"; sourceTree = "<group>"; };
 		F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+addObjects.m"; sourceTree = "<group>"; };
+		F51E3B6717A8BCA00024D351 /* JFSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSettingViewController.h; sourceTree = "<group>"; };
+		F51E3B6817A8BCA00024D351 /* JFSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSettingViewController.m; sourceTree = "<group>"; };
+		F51E3B6A17A8C0CA0024D351 /* JFCellDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCellDataModel.h; sourceTree = "<group>"; };
+		F51E3B6B17A8C0CA0024D351 /* JFCellDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCellDataModel.m; sourceTree = "<group>"; };
+		F51E3B6D17A8DFC80024D351 /* JFHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFHelpViewController.h; sourceTree = "<group>"; };
+		F51E3B6E17A8DFC90024D351 /* JFHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFHelpViewController.m; sourceTree = "<group>"; };
+		F51E3B7017A8DFEF0024D351 /* JFAppearenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAppearenceViewController.h; sourceTree = "<group>"; };
+		F51E3B7117A8DFEF0024D351 /* JFAppearenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAppearenceViewController.m; sourceTree = "<group>"; };
+		F51E3B7317A8E0490024D351 /* JFVictoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFVictoryViewController.h; sourceTree = "<group>"; };
+		F51E3B7417A8E0490024D351 /* JFVictoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFVictoryViewController.m; sourceTree = "<group>"; };
 		F56BA4C217A21AA50057AE85 /* CABasicAnimation+someAniForProp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+someAniForProp.h"; sourceTree = "<group>"; };
 		F56BA4C317A21AA50057AE85 /* CABasicAnimation+someAniForProp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+someAniForProp.m"; sourceTree = "<group>"; };
 		F56BA4C517A21AFF0057AE85 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -817,6 +832,16 @@
 				F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */,
 				F510E5F917A611D80060C06F /* NSMutableSet+addObjects.h */,
 				F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */,
+				F51E3B6717A8BCA00024D351 /* JFSettingViewController.h */,
+				F51E3B6817A8BCA00024D351 /* JFSettingViewController.m */,
+				F51E3B6D17A8DFC80024D351 /* JFHelpViewController.h */,
+				F51E3B6E17A8DFC90024D351 /* JFHelpViewController.m */,
+				F51E3B6A17A8C0CA0024D351 /* JFCellDataModel.h */,
+				F51E3B6B17A8C0CA0024D351 /* JFCellDataModel.m */,
+				F51E3B7017A8DFEF0024D351 /* JFAppearenceViewController.h */,
+				F51E3B7117A8DFEF0024D351 /* JFAppearenceViewController.m */,
+				F51E3B7317A8E0490024D351 /* JFVictoryViewController.h */,
+				F51E3B7417A8E0490024D351 /* JFVictoryViewController.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1596,6 +1621,11 @@
 				F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */,
 				F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */,
 				F510E5FB17A611D80060C06F /* NSMutableSet+addObjects.m in Sources */,
+				F51E3B6917A8BCA00024D351 /* JFSettingViewController.m in Sources */,
+				F51E3B6C17A8C0CA0024D351 /* JFCellDataModel.m in Sources */,
+				F51E3B6F17A8DFC90024D351 /* JFHelpViewController.m in Sources */,
+				F51E3B7217A8DFEF0024D351 /* JFAppearenceViewController.m in Sources */,
+				F51E3B7517A8E0490024D351 /* JFVictoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

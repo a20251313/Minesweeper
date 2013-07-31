@@ -97,14 +97,15 @@
     [[NSRunLoop currentRunLoop] addTimer:m_timer forMode:NSRunLoopCommonModes];
 }
 
--(void)stopTimer
+-(int)stopTimer
 {
     if (m_timer)
     {
+        [m_timer invalidate];
         [m_timer release];
         m_timer = nil;
     }
-    
+    return m_iSeconds;
 }
 
 -(void)timeChange:(NSTimer *)timer

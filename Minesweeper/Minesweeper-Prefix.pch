@@ -8,6 +8,17 @@
 #warning "This project uses features only available in iOS SDK 4.0 and later."
 #endif
 
+#define DEBUG_VERSION 1
+
+
+#ifdef DEBUG_VERSION
+#define DLOG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
+#else
+#define DLOG(fmt, ...)
+#endif
+
+
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
