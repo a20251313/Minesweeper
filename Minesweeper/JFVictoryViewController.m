@@ -20,8 +20,8 @@
     if (self)
     {
         self.title = @"战果";
-        self.tabBarItem.title = @"战果";
-        self.tabBarItem.image = [UIImage imageNamed:@""];
+        self.tabBarItem.title = self.title;
+        [self.tabBarItem setImage:[UIImage imageNamed:@"statistic.png"]];
         m_arrayData = [[NSMutableArray alloc] init];
         
         [self addDataSource:m_arrayData];
@@ -53,7 +53,7 @@
     [model2 release];
     
     JFCellDataModel  *model3 = [[JFCellDataModel alloc] init];
-    model3.title = @"难度";
+    model3.title = @"效果";
     model3.cellType = JFCellTypeSwith;
     model3.rowCount = 2;
     model3.arrayText = [NSArray arrayWithObjects:@"声音效果",@"动画效果",nil];
@@ -77,17 +77,30 @@
 -(void)loadView
 {
     [super loadView];
-    self.title = @"设置";
-    self.tabBarItem.title = self.title;
-    [self.tabBarItem setImage:[UIImage imageNamed:@"setting.png"]];
+   
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     
-    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-44) style:UITableViewStyleGrouped];
+    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-44-44) style:UITableViewStyleGrouped];
     m_tableView.delegate = self;
     m_tableView.dataSource = self;
     [self.view addSubview:m_tableView];
     
-    
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.navigationController.title = @"战果";
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    UIBarButtonItem  *barBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = barBtn;
+    [barBtn release];
+}
+
+-(void)done:(id)sender
+{
+    [self.tabBarController.navigationController.view removeFromSuperview];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad
 {

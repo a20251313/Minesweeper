@@ -23,6 +23,11 @@
         self.title = @"外观";
         self.tabBarItem.image = [UIImage imageNamed:@"appearance.png"];
         self.tabBarItem.title = @"外观";
+        
+        self.navigationItem.leftBarButtonItem = nil;
+        UIBarButtonItem  *barBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        self.navigationItem.rightBarButtonItem = barBtn;
+        [barBtn release];
     }
     return self;
 }
@@ -38,8 +43,8 @@
     int  maxCount = 10;
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     
-    m_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-44)];
-    m_scrollView.contentSize = CGSizeMake(320*maxCount, frame.size.height-44-44);
+    m_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-20-44-44)];
+    m_scrollView.contentSize = CGSizeMake(320*maxCount, frame.size.height-20-44-44);
     [self.view addSubview:m_scrollView];
     m_scrollView.delegate = self;
     m_scrollView.pagingEnabled = YES;
@@ -54,7 +59,7 @@
     for (int i = 0; i < 11; i++)
     {
         NSString  *strImageMame = [NSString stringWithFormat:@"%d-sample.png",i+1];
-        UIView   *bgView = [[UIView alloc] initWithFrame:CGRectMake(0+i*frame.size.width, 0, frame.size.width, frame.size.height-44-44)];
+        UIView   *bgView = [[UIView alloc] initWithFrame:CGRectMake(0+i*frame.size.width, 0, frame.size.width, frame.size.height-20-44-44)];
         
         //216*216
         [m_scrollView addSubview:bgView];
@@ -70,8 +75,25 @@
         [view release];
         [bgView release];
     }
+    
+    
+
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.navigationController.title = @"外观";
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    UIBarButtonItem  *barBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = barBtn;
+    [barBtn release];
+}
+
+-(void)done:(id)sender
+{
+    [self.tabBarController.navigationController.view removeFromSuperview];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView//;      // called when scroll view grinds to a halt

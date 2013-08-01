@@ -89,14 +89,31 @@
     [self.tabBarItem setImage:[UIImage imageNamed:@"setting.png"]];
     CGRect frame = [UIScreen mainScreen].applicationFrame;
     
-    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-44) style:UITableViewStyleGrouped];
+    m_tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-44-44) style:UITableViewStyleGrouped];
     m_tableView.delegate = self;
     m_tableView.dataSource = self;
     [self.view addSubview:m_tableView];
     
+    
+
+    
    
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.navigationController.title = @"设置";
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    UIBarButtonItem  *barBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = barBtn;
+    [barBtn release];
+}
+
+-(void)done:(id)sender
+{
+    [self.tabBarController.navigationController.view removeFromSuperview];
+    //[self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

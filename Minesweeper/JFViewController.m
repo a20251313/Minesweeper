@@ -69,8 +69,8 @@
 -(void)dealloc
 {
     self.mineConfig = nil;
-    [m_tabBar release];
-    m_tabBar = nil;
+    [m_nav release];
+    m_nav = nil;
     [super dealloc];
 }
 
@@ -274,11 +274,13 @@
 
 -(void)clickMenu:(id)sender
 {
-    
-    if (m_tabBar == nil)
+      NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",m_objMineConfig.minePicNumber];
+    if (m_nav == nil)
     {
-         m_tabBar = [[UITabBarController alloc] init];
         
+      
+        UITabBarController *tabBar = [[UITabBarController alloc] init];
+       // m_tabBar.tabBar.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height-53, 320, 53);
         JFSettingViewController   *setControl = [[JFSettingViewController alloc] init];
         
         
@@ -290,20 +292,79 @@
         
         JFVictoryViewController    *victContrl = [[JFVictoryViewController alloc] init];
         
-        NSArray  *arrayControlss = [NSArray arrayWithObjects:setControl,appControl,helpContrl,victContrl,nil];
+        
+       /* UINavigationController *NavController1 = [[UINavigationController alloc] initWithRootViewController:setControl];
+        NavController1.tabBarItem.tag = 1;
+        [NavController1.navigationBar setBackgroundColor:[UIColor blackColor]];
+        if ([NavController1.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+        {
+            [NavController1.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+        }
+        
+        UINavigationController *NavController2 = [[UINavigationController alloc] initWithRootViewController:appControl];
+        NavController2.tabBarItem.tag = 2;
+        [NavController2.navigationBar setBackgroundColor:[UIColor blackColor]];
+        if ([NavController2.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+        {
+            [NavController2.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+        }
+        
+        UINavigationController *NavController3 = [[UINavigationController alloc] initWithRootViewController:helpContrl];
+        NavController3.tabBarItem.tag = 3;
+        [NavController3.navigationBar setBackgroundColor:[UIColor blackColor]];
+        if ([NavController3.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+        {
+            [NavController3.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+        }
+        UINavigationController *NavController4 = [[UINavigationController alloc] initWithRootViewController:victContrl];
+        NavController4.tabBarItem.tag = 1;
+        [NavController4.navigationBar setBackgroundColor:[UIColor blackColor]];
+        if ([NavController4.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+        {
+            [NavController4.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+        }
+   
+        
+        NSArray  *arrayControlss = [NSArray arrayWithObjects:NavController1,NavController2,NavController3,NavController4,nil];
         m_tabBar.viewControllers = arrayControlss;
         
         
+        [NavController1 release];
+        [NavController2 release];
+        [NavController3 release];
+        [NavController4 release];*/
+        
+        
+        NSArray  *arrayControlss = [NSArray arrayWithObjects:setControl,appControl,helpContrl,victContrl,nil];
+        tabBar.viewControllers = arrayControlss;
+
+        m_nav = [[UINavigationController alloc] initWithRootViewController:tabBar];
+        [UIApplication sharedApplication].statusBarHidden = NO;
+        
+        
+        
+       
+        
+      //  [self.navigationController pushViewController:nav animated:YES];
+
         [setControl release];
         [appControl release];
         [helpContrl release];
         [victContrl release];
+              // [self.view addSubview:m_tabBar.view];
         
     }
    
     
-    
-    [self.navigationController pushViewController:m_tabBar animated:YES];
+    [m_nav.navigationBar setBackgroundColor:[UIColor blackColor]];
+    if ([m_nav.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        [m_nav.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+    }
+    [self.view.window addSubview:m_nav.view];
+   // [self.navigationController pushViewController:m_tabBar animated:YES];
+
+   // [self.navigationController pushViewController:m_tabBar animated:YES];
     
     NSLog(@"clickMenu:%@",sender);
 }
@@ -779,7 +840,14 @@
     
     int second = [self.titleView stopTimer];
     
-    
+    for (int i = 0; i < [m_arrayStoreBtn count]; i++)
+    {
+        JFMineButton  *btnTemp = [m_arrayStoreBtn objectAtIndex:i];
+        if (btnTemp.buttonFlag == JFMineButtonFlagNone || btnTemp.buttonFlag == JFMineButtonFlagIsNotSure)
+        {
+            [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
+        }
+    }
     DLOG(@"WinGame:%@ second:%d",mineButton,second);
     
 }

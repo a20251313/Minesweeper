@@ -52,7 +52,7 @@
         DLOG(@"error:%@",error);
     }
      CGRect frame = [UIScreen mainScreen].applicationFrame;
-     UITextView  *view = [[UITextView alloc] initWithFrame:CGRectMake(10, 40, frame.size.width-20, frame.size.height-44-44-40)];
+     UITextView  *view = [[UITextView alloc] initWithFrame:CGRectMake(10, 0, frame.size.width-20, frame.size.height-44-44)];
      view.backgroundColor = [UIColor clearColor];
      view.font = [UIFont systemFontOfSize:17];
      view.text = strHelp;
@@ -62,6 +62,21 @@
     
   
   
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.navigationController.title = @"帮助";
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    UIBarButtonItem  *barBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.tabBarController.navigationItem.rightBarButtonItem = barBtn;
+    [barBtn release];
+}
+
+-(void)done:(id)sender
+{
+    [self.tabBarController.navigationController.view removeFromSuperview];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad
 {

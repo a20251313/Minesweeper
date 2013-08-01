@@ -35,8 +35,9 @@
     int                 m_iFlagRightNumber;
     
     CGFloat             m_fMineWidth;
+
     
-    UITabBarController  *m_tabBar;
+    UINavigationController  *m_nav;
     
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;
