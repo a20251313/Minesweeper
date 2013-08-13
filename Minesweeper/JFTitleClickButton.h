@@ -31,6 +31,7 @@
 }
 @property(nonatomic,retain)JFMineLevelConfig  *mineConfig;
 @property(nonatomic,assign)id<JFTitleClickButtonDelegate> delegate;
+@property(nonatomic)int  secondTime;
 -(void)startTimer;
 
 - (id)initWithFrame:(CGRect)frame WithConfig:(JFMineLevelConfig*)config;

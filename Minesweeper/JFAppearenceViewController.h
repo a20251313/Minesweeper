@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JFGameInfoModel.h"
 
 @interface JFAppearenceViewController : UIViewController<UIScrollViewDelegate,UIPageViewControllerDelegate>
 {

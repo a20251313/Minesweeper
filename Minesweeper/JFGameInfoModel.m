@@ -88,7 +88,7 @@ static JFGameInfoModel  *info = nil;
         config.rowNumber = [[dicConfig valueForKey:@"rowNumber"] intValue];
         config.colummNumber = [[dicConfig valueForKey:@"colummNumber"] intValue];
         config.totalButtonNumber = config.rowNumber*config.colummNumber;
-        
+        config.minePicNumber = [[dicConfig valueForKey:@"minePicNumber"] intValue];
         
         NSDictionary  *dicResult = [dicInfo valueForKey:@"simpleResult"];
         simleResult.bestCostTime = [[dicResult valueForKey:@"bestCostTime"] intValue];
@@ -122,9 +122,9 @@ static JFGameInfoModel  *info = nil;
     }else
     {
         config.minelevel = JFMineLevelSimple;
-        config.mineNumber = 9;
-        config.rowNumber = 10;
-        config.colummNumber = 10;
+        config.mineNumber = 10;
+        config.rowNumber = 9;
+        config.colummNumber = 9;
         config.minePicNumber = 2;
         info.IsAudio = YES;
         info.IsAni = YES;

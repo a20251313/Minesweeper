@@ -75,8 +75,13 @@
         [view release];
         [bgView release];
     }
-    
-    
+
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    int picNumber = info.mineConfig.minePicNumber;
+
+    [m_scrollView scrollRectToVisible:CGRectMake((picNumber-1)*frame.size.width, 0, frame.size.width, m_scrollView.frame.size.height) animated:NO];
+
+
 
 }
 
@@ -89,8 +94,12 @@
     [barBtn release];
 }
 
+
+
 -(void)done:(id)sender
 {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserHasChangeConfig" object:nil];
     [self.tabBarController.navigationController.view removeFromSuperview];
     //[self.navigationController popViewControllerAnimated:YES];
 }
@@ -107,6 +116,21 @@
 
 -(void)clickAppearenceView:(UITapGestureRecognizer *)tap
 {
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    info.mineConfig.minePicNumber = m_pageControl.currentPage+1;
+    
+    
+    NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",info.mineConfig.minePicNumber];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+    }
+    
+    
+    
+    [JFGameInfoModel storeGameInfo];
     DLOG(@"tap:%@ \n tapView:%@",tap,tap.view);
     
 }

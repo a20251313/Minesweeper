@@ -17,6 +17,7 @@
 //120+24  48
 @synthesize mineConfig = m_objConfig;
 @synthesize delegate;
+@synthesize secondTime = m_iSeconds;
 
 
 - (id)initWithFrame:(CGRect)frame WithConfig:(JFMineLevelConfig*)config

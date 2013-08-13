@@ -16,7 +16,6 @@
 		F5049930178FD906007BBFD7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F504992F178FD906007BBFD7 /* Default@2x.png */; };
 		F5049932178FD906007BBFD7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5049931178FD906007BBFD7 /* Default-568h@2x.png */; };
 		F5049935178FD906007BBFD7 /* JFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5049934178FD906007BBFD7 /* JFViewController.m */; };
-		F5049938178FD906007BBFD7 /* JFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5049936178FD906007BBFD7 /* JFViewController.xib */; };
 		F5049940178FD906007BBFD7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504993F178FD906007BBFD7 /* SenTestingKit.framework */; };
 		F5049941178FD906007BBFD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504991B178FD906007BBFD7 /* UIKit.framework */; };
 		F5049942178FD906007BBFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504991D178FD906007BBFD7 /* Foundation.framework */; };
@@ -375,7 +374,6 @@
 		F5049931178FD906007BBFD7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F5049933178FD906007BBFD7 /* JFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JFViewController.h; sourceTree = "<group>"; };
 		F5049934178FD906007BBFD7 /* JFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JFViewController.m; sourceTree = "<group>"; };
-		F5049937178FD906007BBFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JFViewController.xib; sourceTree = "<group>"; };
 		F504993E178FD906007BBFD7 /* MinesweeperTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinesweeperTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F504993F178FD906007BBFD7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F5049947178FD906007BBFD7 /* MinesweeperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MinesweeperTests-Info.plist"; sourceTree = "<group>"; };
@@ -784,7 +782,6 @@
 				F504992B178FD906007BBFD7 /* JFAppDelegate.m */,
 				F5049933178FD906007BBFD7 /* JFViewController.h */,
 				F5049934178FD906007BBFD7 /* JFViewController.m */,
-				F5049936178FD906007BBFD7 /* JFViewController.xib */,
 				F5A0EC5617968181009407FC /* Class */,
 				F5A0EEF817968BA2009407FC /* resource */,
 				F5049922178FD906007BBFD7 /* Supporting Files */,
@@ -1276,7 +1273,6 @@
 				F5049926178FD906007BBFD7 /* InfoPlist.strings in Resources */,
 				F5049930178FD906007BBFD7 /* Default@2x.png in Resources */,
 				F5049932178FD906007BBFD7 /* Default-568h@2x.png in Resources */,
-				F5049938178FD906007BBFD7 /* JFViewController.xib in Resources */,
 				F5A0F03417968BA4009407FC /* 1-1.png in Resources */,
 				F5A0F03517968BA4009407FC /* 1-2.png in Resources */,
 				F5A0F03617968BA4009407FC /* 1-3.png in Resources */,
@@ -1667,14 +1663,6 @@
 				F5049925178FD906007BBFD7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F5049936178FD906007BBFD7 /* JFViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F5049937178FD906007BBFD7 /* en */,
-			);
-			name = JFViewController.xib;
 			sourceTree = "<group>";
 		};
 		F5049948178FD906007BBFD7 /* InfoPlist.strings */ = {

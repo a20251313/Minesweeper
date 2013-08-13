@@ -23,7 +23,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[JFViewController alloc] initWithNibName:@"JFViewController" bundle:nil] autorelease];
+    self.viewController = [[[JFViewController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
     
     UINavigationController  *nav = [[UINavigationController alloc] initWithRootViewController:self.viewController];

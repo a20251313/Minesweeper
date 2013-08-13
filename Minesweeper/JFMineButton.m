@@ -95,6 +95,7 @@
 -(void)setMineFlag:(JFMineButtonFlag)flag
 {
     self.buttonFlag = flag;
+    
     switch (flag)
     {
         case JFMineButtonFlagNone:

@@ -29,47 +29,79 @@
     return self;
 }
 
-
+-(NSString *)getTimeString:(int)m_isecond
+{
+    int seconds = m_isecond%60;
+    int minutes = m_isecond/60;
+    
+    NSString  *strTime = @"";
+    
+    if (minutes < 10)
+    {
+        strTime = [NSString stringWithFormat:@"0%d:",minutes];
+    }else
+    {
+        strTime = [NSString stringWithFormat:@"%d:",minutes];
+    }
+    
+    if (seconds < 10)
+    {
+        strTime = [NSString stringWithFormat:@"%@0%d",strTime,seconds];
+    }else
+    {
+        strTime = [NSString stringWithFormat:@"%@%d",strTime,seconds];
+    }
+    
+    
+    return strTime;
+}
 -(void)addDataSource:(NSMutableArray *)array
 {
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    
+    
     NSAssert(array != nil, @"addDataSource array == nil");
     
     JFCellDataModel  *model1 = [[JFCellDataModel alloc] init];
-    model1.title = @"评分";
+    model1.title = @"初级";
     model1.cellType = JFCellTypeNormal;
-    model1.rowCount = 2;
-    model1.arrayText = [NSArray arrayWithObjects:@"给我们评分",@"给我们发送邮件",nil];
+    model1.rowCount = 5;
+    model1.arrayText = [NSArray arrayWithObjects:@"最佳时间",@"次数",@"胜场",@"胜率",@"清空记录",nil];
+    model1.arraySubText = [NSArray arrayWithObjects:[self getTimeString:info.simpleResult.bestCostTime],[NSString stringWithFormat:@"%d",info.simpleResult.playTimes],[NSString stringWithFormat:@"%d",info.simpleResult.winTimes],[NSString stringWithFormat:@"%0.2f%%",100*(info.simpleResult.playTimes == 0?0:info.simpleResult.winTimes*1.0f/(info.simpleResult.playTimes*1.0f))],@"",nil];
     [array addObject:model1];
     [model1 release];
     
     
-    JFCellDataModel  *model2= [[JFCellDataModel alloc] init];
-    model2.title = @"难度";
+    JFCellDataModel  *model2 = [[JFCellDataModel alloc] init];
+    model2.title = @"中级";
     model2.cellType = JFCellTypeNormal;
-    model2.rowCount = 4;
-    model2.arrayText = [NSArray arrayWithObjects:@"初级",@"中级",@"高级",@"自定级",nil];
-    model2.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",@"9x9,10地雷",nil];
+    model2.rowCount = 5;
+    model2.arrayText = [NSArray arrayWithObjects:@"最佳时间",@"次数",@"胜场",@"胜率",@"清空记录",nil];
+    model2.arraySubText = [NSArray arrayWithObjects:[self getTimeString:info.NormalResult.bestCostTime],[NSString stringWithFormat:@"%d",info.NormalResult.playTimes],[NSString stringWithFormat:@"%d",info.NormalResult.winTimes],[NSString stringWithFormat:@"%0.2f%%",100*(info.NormalResult.playTimes == 0?0:info.NormalResult.winTimes*1.0f/(info.NormalResult.playTimes*1.0f))],@"",nil];
     [array addObject:model2];
     [model2 release];
     
+    
     JFCellDataModel  *model3 = [[JFCellDataModel alloc] init];
-    model3.title = @"效果";
-    model3.cellType = JFCellTypeSwith;
-    model3.rowCount = 2;
-    model3.arrayText = [NSArray arrayWithObjects:@"声音效果",@"动画效果",nil];
-    //model3.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",@"9x9,10地雷",nil];
+    model3.title = @"高级";
+    model3.cellType = JFCellTypeNormal;
+    model3.rowCount = 5;
+    model3.arrayText = [NSArray arrayWithObjects:@"最佳时间",@"次数",@"胜场",@"胜率",@"清空记录",nil];
+    model3.arraySubText = [NSArray arrayWithObjects:[self getTimeString:info.HardResult.bestCostTime],[NSString stringWithFormat:@"%d",info.HardResult.playTimes],[NSString stringWithFormat:@"%d",info.HardResult.winTimes],[NSString stringWithFormat:@"%0.2f%%",100*(info.HardResult.playTimes == 0?0:info.HardResult.winTimes*1.0f/(info.HardResult.playTimes*1.0f))],@"",nil];
     [array addObject:model3];
     [model3 release];
     
-    
     JFCellDataModel  *model4 = [[JFCellDataModel alloc] init];
-    model4.title = @"版本";
+    model4.title = @"高级";
     model4.cellType = JFCellTypeNormal;
-    model4.rowCount = 1;
-    model4.arrayText = [NSArray arrayWithObjects:@"1.0.0",nil];
-    //model3.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",@"9x9,10地雷",nil];
+    model4.rowCount = 5;
+    model4.arrayText = [NSArray arrayWithObjects:@"最佳时间",@"次数",@"胜场",@"胜率",@"清空记录",nil];
+    model4.arraySubText = [NSArray arrayWithObjects:[self getTimeString:info.DIYResult.bestCostTime],[NSString stringWithFormat:@"%d",info.DIYResult.playTimes],[NSString stringWithFormat:@"%d",info.DIYResult.winTimes],[NSString stringWithFormat:@"%0.2f%%",100*(info.DIYResult.playTimes == 0?0:info.DIYResult.winTimes*1.0f/(info.DIYResult.playTimes*1.0f))],@"",nil];
     [array addObject:model4];
     [model4 release];
+    
+
     
     
     

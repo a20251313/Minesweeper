@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JFCellDataModel.h"
+#import "JFGameInfoModel.h"
 
 @interface JFVictoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {

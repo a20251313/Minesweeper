@@ -16,6 +16,7 @@
 #import "JFAppearenceViewController.h"
 #import "JFHelpViewController.h"
 #import "JFVictoryViewController.h"
+#import "JFGameInfoModel.h"
 
 
 @interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate>
@@ -38,6 +39,8 @@
 
     
     UINavigationController  *m_nav;
+    
+    UITabBarController          *m_tar;
     
 }
 @property(nonatomic,retain)JFMineLevelConfig *mineConfig;

@@ -19,15 +19,61 @@
 @synthesize titleView;
 
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self)
     {
         m_arrayStoreBtn = [[NSMutableArray alloc] init];
-        
+        self.mineConfig = [[JFGameInfoModel shareGameInfo] mineConfig];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initNavView:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userHasChnageInfo:) name:@"UserHasChangeConfig" object:nil];
     }
     return self;
+}
+
+
+-(void)initNavView:(NSNotification*)note
+{
+    
+    
+    CGRect frame = m_scorllView.frame;
+    frame.origin.y = 0;
+    m_scorllView.frame = frame;
+
+    
+}
+
+-(void)userHasChnageInfo:(NSNotification*)note
+{
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    self.mineConfig = info.mineConfig;
+    [self redrawWhenConfigChange];
+}
+
+-(void)redrawWhenConfigChange
+{
+    
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        
+        NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",self.mineConfig.minePicNumber];
+        
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+    }
+    
+    
+    for (int i = 0; i < [m_arrayStoreBtn count]; i++)
+    {
+        JFMineButton *btn = [m_arrayStoreBtn objectAtIndex:i];
+        btn.picMynumer = self.mineConfig.minePicNumber;
+        [btn setMineFlag:btn.buttonFlag];
+    }
+    
+}
+-(void)loadView
+{
+    [super loadView];
 }
 - (void)viewDidLoad
 {
@@ -35,37 +81,52 @@
     [super viewDidLoad];
     
     m_fMineWidth = 48;
-    JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
+    /*JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
     config.mineNumber = 9;
     config.totalButtonNumber = 16*30;
     config.minePicNumber = 4;
     config.rowNumber = 10;
-    config.colummNumber = 10;
+    config.colummNumber = 10;*/
     
-    self.mineConfig = config;
-    [config release];
+   
+ //   [config release];
   
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-    {
-        
-        NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",m_objMineConfig.minePicNumber];
-        
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
-    }
 
     
-    [self initNowView];
+    
  
    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        
+        NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",self.mineConfig.minePicNumber];
+        
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
+    }
+    self.wantsFullScreenLayout = YES;
+    
+  //  [self initNowView];
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //[self performSelector:@selector(initNowView) withObject:nil afterDelay:2];
+    //[self performSelector:@selector(initNowView) onThread:[NSThread mainThread] withObject:nil waitUntilDone:NO];
+    [self initNowView];
+}
 -(void)dealloc
 {
     self.mineConfig = nil;
@@ -106,7 +167,7 @@
         CGRect frame = [UIScreen mainScreen].applicationFrame;
         
         //NSLog(@"frame:%@",[NSValue valueWithCGRect:frame]);
-        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-20)];
+        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44)];
         m_scorllView.contentSize = m_scorllView.frame.size;
        // m_scorllView.contentOffset = CGPointMake(0, frame.size.width);
         m_fWidth = frame.size.width;
@@ -275,6 +336,8 @@
 -(void)clickMenu:(id)sender
 {
       NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",m_objMineConfig.minePicNumber];
+        
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     if (m_nav == nil)
     {
         
@@ -293,53 +356,14 @@
         JFVictoryViewController    *victContrl = [[JFVictoryViewController alloc] init];
         
         
-       /* UINavigationController *NavController1 = [[UINavigationController alloc] initWithRootViewController:setControl];
-        NavController1.tabBarItem.tag = 1;
-        [NavController1.navigationBar setBackgroundColor:[UIColor blackColor]];
-        if ([NavController1.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [NavController1.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
-        }
-        
-        UINavigationController *NavController2 = [[UINavigationController alloc] initWithRootViewController:appControl];
-        NavController2.tabBarItem.tag = 2;
-        [NavController2.navigationBar setBackgroundColor:[UIColor blackColor]];
-        if ([NavController2.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [NavController2.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
-        }
-        
-        UINavigationController *NavController3 = [[UINavigationController alloc] initWithRootViewController:helpContrl];
-        NavController3.tabBarItem.tag = 3;
-        [NavController3.navigationBar setBackgroundColor:[UIColor blackColor]];
-        if ([NavController3.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [NavController3.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
-        }
-        UINavigationController *NavController4 = [[UINavigationController alloc] initWithRootViewController:victContrl];
-        NavController4.tabBarItem.tag = 1;
-        [NavController4.navigationBar setBackgroundColor:[UIColor blackColor]];
-        if ([NavController4.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [NavController4.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
-        }
-   
-        
-        NSArray  *arrayControlss = [NSArray arrayWithObjects:NavController1,NavController2,NavController3,NavController4,nil];
-        m_tabBar.viewControllers = arrayControlss;
-        
-        
-        [NavController1 release];
-        [NavController2 release];
-        [NavController3 release];
-        [NavController4 release];*/
+
         
         
         NSArray  *arrayControlss = [NSArray arrayWithObjects:setControl,appControl,helpContrl,victContrl,nil];
         tabBar.viewControllers = arrayControlss;
 
         m_nav = [[UINavigationController alloc] initWithRootViewController:tabBar];
-        [UIApplication sharedApplication].statusBarHidden = NO;
+        [UIApplication sharedApplication].statusBarHidden = YES;
         
         
         
@@ -361,13 +385,65 @@
     {
         [m_nav.navigationBar setBackgroundImage:[UIImage imageNamed:strPicName] forBarMetrics:UIBarMetricsDefault];
     }
-    [self.view.window addSubview:m_nav.view];
-   // [self.navigationController pushViewController:m_tabBar animated:YES];
-
-   // [self.navigationController pushViewController:m_tabBar animated:YES];
-    
+    [self.view.window addSubview:m_nav.view];    
     NSLog(@"clickMenu:%@",sender);
 }
+
+
+
+/*-(void)clickMenu:(id)sender
+{
+    NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",m_objMineConfig.minePicNumber];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    if (m_tar == nil)
+    {
+        
+        
+       m_tar  = [[UITabBarController alloc] init];
+        // m_tabBar.tabBar.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height-53, 320, 53);
+        JFSettingViewController   *setControl = [[JFSettingViewController alloc] init];
+        
+        
+        JFAppearenceViewController  *appControl = [[JFAppearenceViewController alloc] init];
+        
+        
+        JFHelpViewController        *helpContrl = [[JFHelpViewController alloc] init];
+        
+        
+        JFVictoryViewController    *victContrl = [[JFVictoryViewController alloc] init];
+        
+
+        
+        
+        NSArray  *arrayControlss = [NSArray arrayWithObjects:setControl,appControl,helpContrl,victContrl,nil];
+        m_tar.viewControllers = arrayControlss;
+        
+
+        
+        
+        
+        
+        
+        //  [self.navigationController pushViewController:nav animated:YES];
+        
+        [setControl release];
+        [appControl release];
+        [helpContrl release];
+        [victContrl release];
+        // [self.view addSubview:m_tabBar.view];
+        
+    }
+    
+
+    [self.view.window addSubview:m_tar.view];
+    // [self.navigationController pushViewController:m_tabBar animated:YES];
+    
+    // [self.navigationController pushViewController:m_tabBar animated:YES];
+    
+    NSLog(@"clickMenu:%@",sender);
+}*/
+
+
 -(void)clickInfoAction:(id)sender
 {
     NSLog(@"clickInfoAction:%@",sender);
@@ -801,6 +877,7 @@
 -(void)GameOver:(JFMineButton*)btn
 {
     
+    [self.titleView stopTimer];
     for (int i = 0; i < [m_arrayStoreBtn count]; i++)
     {
         JFMineButton  *btnTemp = [m_arrayStoreBtn objectAtIndex:i];
@@ -832,7 +909,9 @@
         }
         
     }
-       NSLog(@"game over");
+    
+    [self storeGameInfoWhenGameOver:NO];
+    NSLog(@"game over");
 }
 
 -(void)WinGame:(JFMineButton *)mineButton
@@ -848,8 +927,54 @@
             [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
         }
     }
+    [self storeGameInfoWhenGameOver:YES];
     DLOG(@"WinGame:%@ second:%d",mineButton,second);
     
+}
+
+
+-(void)storeGameInfoWhenGameOver:(BOOL)bIsWin
+{
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    JFGameResultModel  *model = nil;
+    switch (self.mineConfig.minelevel)
+    {
+        case JFMineLevelNormal:
+            model = info.NormalResult;
+            break;
+        case JFMineLevelSimple:
+            model = info.simpleResult;
+            break;
+        case JFMineLevelHard:
+            model = info.HardResult;
+            break;
+        case JFMineLevelSelfMake:
+            model = info.DIYResult;
+            break;
+        default:
+            break;
+    }
+    
+    
+    model.playTimes ++;
+    if(bIsWin)
+    {
+        model.winTimes++;
+        
+        if(model.bestCostTime == 0)
+        {
+            model.bestCostTime = self.titleView.secondTime;
+        }else
+        {
+            if(self.titleView.secondTime < model.bestCostTime)
+            {
+                model.bestCostTime = self.titleView.secondTime;
+            }
+        }
+    }
+    [JFGameInfoModel storeGameInfo];
+
 }
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
