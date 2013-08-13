@@ -122,9 +122,9 @@ static JFGameInfoModel  *info = nil;
     }else
     {
         config.minelevel = JFMineLevelSimple;
-        config.mineNumber = 10;
-        config.rowNumber = 9;
-        config.colummNumber = 9;
+        config.mineNumber = 40;
+        config.rowNumber = 16;
+        config.colummNumber = 16;
         config.minePicNumber = 2;
         info.IsAudio = YES;
         info.IsAni = YES;

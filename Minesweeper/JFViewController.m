@@ -684,17 +684,17 @@
             
             if (btnTemp.mineNumber <= 0 )
             {
-                
-                [self performSelector:@selector(showBtnNumber:) withObject:btnTemp];
+                [self showBtnNumber:btnTemp];
+                //[self performSelector:@selector(showBtnNumber:) withObject:btnTemp];
                // [self showBtnNumber:btnTemp];
             }
             
-            if (mineButton.buttonFlag == JFMineButtonFlagNone)
+           /* if (mineButton.buttonFlag == JFMineButtonFlagNone)
             {
                 [btnTemp.layer addAnimation:[CABasicAnimation aniAlpha:0.2 fromValue:0.75 tovalue:1] forKey:nil];
-            }
+            }*/
             [btnTemp setMineFlag:JFMineButtonFlagShowNumber];
-            btnTemp.IsShow = YES;
+            
         }
                
         
