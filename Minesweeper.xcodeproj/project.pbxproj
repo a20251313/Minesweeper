@@ -345,6 +345,9 @@
 		F5A0F16C17968BA4009407FC /* twitter32.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03117968BA4009407FC /* twitter32.png */; };
 		F5A0F16D17968BA4009407FC /* twitter48.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03217968BA4009407FC /* twitter48.png */; };
 		F5A0F16E17968BA4009407FC /* twitter_load.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A0F03317968BA4009407FC /* twitter_load.png */; };
+		F5D1EBF817BC6B23002C71B0 /* JFDIYMineLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */; };
+		F5D1EBFB17BC758F002C71B0 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D1EBF917BC758A002C71B0 /* cancel.png */; };
+		F5D1EBFC17BC758F002C71B0 /* makesure.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D1EBFA17BC758C002C71B0 /* makesure.png */; };
 		F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D903179CF960005A0233 /* JFTitleClickButton.m */; };
 		F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */; };
 /* End PBXBuildFile section */
@@ -713,6 +716,10 @@
 		F5A0F03117968BA4009407FC /* twitter32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter32.png; sourceTree = "<group>"; };
 		F5A0F03217968BA4009407FC /* twitter48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter48.png; sourceTree = "<group>"; };
 		F5A0F03317968BA4009407FC /* twitter_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_load.png; sourceTree = "<group>"; };
+		F5D1EBF617BC6B23002C71B0 /* JFDIYMineLevelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFDIYMineLevelView.h; sourceTree = "<group>"; };
+		F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFDIYMineLevelView.m; sourceTree = "<group>"; };
+		F5D1EBF917BC758A002C71B0 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		F5D1EBFA17BC758C002C71B0 /* makesure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makesure.png; sourceTree = "<group>"; };
 		F5F6D902179CF960005A0233 /* JFTitleClickButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTitleClickButton.h; sourceTree = "<group>"; };
 		F5F6D903179CF960005A0233 /* JFTitleClickButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTitleClickButton.m; sourceTree = "<group>"; };
 		F5F6D905179D05DB005A0233 /* JFMineLevelConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMineLevelConfig.h; sourceTree = "<group>"; };
@@ -848,6 +855,8 @@
 				F524F0ED17AA028800437F70 /* JFGameInfoModel.m */,
 				F524F0EF17AA055200437F70 /* JFGameResultModel.h */,
 				F524F0F017AA055300437F70 /* JFGameResultModel.m */,
+				F5D1EBF617BC6B23002C71B0 /* JFDIYMineLevelView.h */,
+				F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -911,6 +920,8 @@
 				F5A0F03117968BA4009407FC /* twitter32.png */,
 				F5A0F03217968BA4009407FC /* twitter48.png */,
 				F5A0F03317968BA4009407FC /* twitter_load.png */,
+				F5D1EBF917BC758A002C71B0 /* cancel.png */,
+				F5D1EBFA17BC758C002C71B0 /* makesure.png */,
 			);
 			name = "public resource";
 			sourceTree = "<group>";
@@ -1585,6 +1596,8 @@
 				F5A0F16D17968BA4009407FC /* twitter48.png in Resources */,
 				F5A0F16E17968BA4009407FC /* twitter_load.png in Resources */,
 				F58DF74617A90036009F2732 /* help.txt in Resources */,
+				F5D1EBFB17BC758F002C71B0 /* cancel.png in Resources */,
+				F5D1EBFC17BC758F002C71B0 /* makesure.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1634,6 +1647,7 @@
 				F51E3B7517A8E0490024D351 /* JFVictoryViewController.m in Sources */,
 				F524F0EE17AA028800437F70 /* JFGameInfoModel.m in Sources */,
 				F524F0F117AA055300437F70 /* JFGameResultModel.m in Sources */,
+				F5D1EBF817BC6B23002C71B0 /* JFDIYMineLevelView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

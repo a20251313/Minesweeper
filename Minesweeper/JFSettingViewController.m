@@ -141,6 +141,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    if (indexPath.section == 1 && indexPath.row == 3)
+    {
+        JFDIYMineLevelView  *levelView = [[JFDIYMineLevelView alloc] initWithFrame:CGRectMake(10, 20, 260, 200)];
+        [self.view addSubview:levelView];
+        levelView.center = self.view.center;
+        
+    }
+    
 }
 
 
@@ -289,5 +297,8 @@
     
     return cell;
 }
+
+
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JFCellDataModel.h"
+#import "JFDIYMineLevelView.h"
 
 @interface JFSettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
