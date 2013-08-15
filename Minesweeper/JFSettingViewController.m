@@ -211,9 +211,11 @@
     {
         if (indexPath.row == 0)
         {
+            [self GoToITunesStore];
             //go to itunes
         }else
         {
+            [self launchMailAppOnDevice];
             //go to sendEmail
         }
         
@@ -228,6 +230,24 @@
     
     
 }
+
+-(void)GoToITunesStore
+{
+    NSString *url = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d",514865541];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
+-(void)launchMailAppOnDevice
+{
+	NSString *recipients = @"mailto:a20251313@163.com?&subject=mineSweeper advise!";
+	NSString *body = @"&body=Hello,I Found a bugs on this app,Let me tell you.......";
+	
+	NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];
+	email = [email stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:email]];
+}
+
 
 
 #pragma mark  UITableViewDataSouurce delegate
