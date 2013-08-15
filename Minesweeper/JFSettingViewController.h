@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "JFCellDataModel.h"
 #import "JFDIYMineLevelView.h"
+#import "JFGameInfoModel.h"
 
-@interface JFSettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface JFSettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JFDIYMineLevelViewDelegate>
 {
     UITableView   *m_tableView;
     NSMutableArray  *m_arrayData;

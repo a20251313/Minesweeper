@@ -111,7 +111,10 @@
 
 -(void)done:(id)sender
 {
+    
+    
     [self.tabBarController.navigationController.view removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReInitView" object:nil];
     //[self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad
@@ -141,13 +144,72 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 1 && indexPath.row == 3)
+    if (indexPath.section == 1)
     {
-        JFDIYMineLevelView  *levelView = [[JFDIYMineLevelView alloc] initWithFrame:CGRectMake(10, 20, 260, 200)];
-        [self.view addSubview:levelView];
-        levelView.center = self.view.center;
+        int  rowNumber = 0;
+        int  columnNumber = 0;
+        int  mineNumber = 0;
+        JFMineLevel  mymineLevel = JFMineLevelSimple;
+        switch (indexPath.row)
+        {
+            case 0:
+                rowNumber = 9;
+                columnNumber = 9;
+                mineNumber = 10;
+                mymineLevel = JFMineLevelSimple;
+                break;
+            case 1:
+                rowNumber = 16;
+                columnNumber = 16;
+                mineNumber = 40;
+                mymineLevel = JFMineLevelSimple;
+                break;
+            case 2:
+                rowNumber = 16;
+                columnNumber = 30;
+                mineNumber = 99;
+                mymineLevel = JFMineLevelSimple;
+                break;
+            case 3:
+            {
+                JFDIYMineLevelView  *levelView = [[JFDIYMineLevelView alloc] initWithFrame:CGRectMake(10, 20, 260, 200)];
+                levelView.delegate = self;
+                [self.view addSubview:levelView];
+                levelView.center = self.view.center;
+                return;
+            }
+                break;
+                
+            default:
+                break;
+        }
+   
+        JFMineLevelConfig  *mineLevelConfig = [[JFMineLevelConfig alloc] init];
+        mineLevelConfig.minelevel = mymineLevel;
+        mineLevelConfig.rowNumber = rowNumber;
+        mineLevelConfig.colummNumber = columnNumber;
+        mineLevelConfig.mineNumber = mineNumber;
+        [self getMineLevel:mineLevelConfig];
+        [mineLevelConfig release];
+    }else if (indexPath.section == 0)
+    {
+        if (indexPath.row == 0)
+        {
+            //go to itunes
+        }else
+        {
+            //go to sendEmail
+        }
         
+        
+    }else
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    
+    
+
+    
     
 }
 
@@ -296,6 +358,18 @@
     
     
     return cell;
+}
+
+#pragma mark JFDIYMineLevelViewDelegate
+
+-(void)getMineLevel:(JFMineLevelConfig *)mineConfig
+{
+    JFGameInfoModel  *gameInfo = [JFGameInfoModel shareGameInfo];
+    mineConfig.minePicNumber = gameInfo.mineConfig.minePicNumber;
+    gameInfo.mineConfig = mineConfig;
+    
+    [self done:nil];
+    
 }
 
 

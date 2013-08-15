@@ -9,7 +9,7 @@
 #import "JFDIYMineLevelView.h"
 #import <QuartzCore/QuartzCore.h>
 @implementation JFDIYMineLevelView
-
+@synthesize delegate;
 
 //260*160
 - (id)initWithFrame:(CGRect)frame
@@ -202,6 +202,19 @@
 {
     
     [self removeFromSuperview];
+    
+    if (delegate && [delegate respondsToSelector:@selector(getMineLevel:)])
+    {
+        
+        JFMineLevelConfig  *levelConfig = [[JFMineLevelConfig alloc] init];
+        levelConfig.minelevel = JFMineLevelSelfMake;
+        levelConfig.mineNumber = sliderMineNumber.value;
+        levelConfig.rowNumber = sliderWidth.value;
+        levelConfig.colummNumber = sliderHeight.value;
+
+        [delegate getMineLevel:levelConfig];
+        [levelConfig release];
+    }
     DLOG(@"clickSure:%@",sender);
 }
 

@@ -28,10 +28,19 @@
         self.mineConfig = [[JFGameInfoModel shareGameInfo] mineConfig];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initNavView:) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userHasChnageInfo:) name:@"UserHasChangeConfig" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reInitView:) name:@"ReInitView" object:nil];
     }
     return self;
 }
 
+
+-(void)reInitView:(NSNotification*)note
+{
+    JFGameInfoModel  *gameModel = [JFGameInfoModel shareGameInfo];
+    self.mineConfig = gameModel.mineConfig;
+    
+    [self initNowView];
+}
 
 -(void)initNavView:(NSNotification*)note
 {

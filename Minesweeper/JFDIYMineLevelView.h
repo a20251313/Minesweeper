@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JFMineLevelConfig.h"
+@protocol JFDIYMineLevelViewDelegate <NSObject>
 
+-(void)getMineLevel:(JFMineLevelConfig *)mineConfig;
+
+@end
 @interface JFDIYMineLevelView : UIView
 {
     UILabel     *labelWidth;
@@ -17,6 +22,9 @@
     UISlider    *sliderWidth;
     UISlider    *sliderHeight;
     UISlider    *sliderMineNumber;
+    
+    id<JFDIYMineLevelViewDelegate>  delegate;
 }
 
+@property(nonatomic,assign)id<JFDIYMineLevelViewDelegate> delegate;
 @end
