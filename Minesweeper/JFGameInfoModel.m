@@ -32,7 +32,7 @@ static JFGameInfoModel  *info = nil;
 
 +(void)storeGameInfo
 {
-    NSMutableDictionary  *dicInfo = [NSMutableDictionary dictionaryWithCapacity:5];
+    NSMutableDictionary  *dicInfo = [NSMutableDictionary dictionaryWithCapacity:7];
     NSDictionary  *dicConfig = [NSDictionary dictionaryWithObjectsAndKeys:@(info.mineConfig.minelevel),@"level",@(info.mineConfig.mineNumber),@"mineNumber",@(info.mineConfig.rowNumber),@"rowNumber",@(info.mineConfig.colummNumber),@"colummNumber",@(info.mineConfig.minePicNumber),@"minePicNumber",nil];
     [dicInfo setObject:dicConfig forKey:@"mineConfig"];
     
@@ -56,6 +56,7 @@ static JFGameInfoModel  *info = nil;
     [dicInfo setObject:@(info.IsAudio) forKey:@"IsAudio"];
     
     [[NSUserDefaults standardUserDefaults] setObject:dicInfo forKey:@"JFGameInfoModel"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 +(void)GetGameInfo
@@ -117,8 +118,8 @@ static JFGameInfoModel  *info = nil;
         DIYResult.playTimes = [[dicResult valueForKey:@"playTimes"] intValue];
         DIYResult.winTimes = [[dicResult valueForKey:@"winTimes"] intValue];
         
-        info.IsAni = [[dicInfo valueForKey:@"ISANI"] boolValue];
-        info.IsAudio = [[dicInfo valueForKey:@"IsAudio"] boolValue];
+        info.IsAni = [[dicInfo objectForKey:@"ISANI"] boolValue];
+        info.IsAudio = [[dicInfo objectForKey:@"IsAudio"] boolValue];
     }else
     {
         config.minelevel = JFMineLevelSimple;

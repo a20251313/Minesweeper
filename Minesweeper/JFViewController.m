@@ -38,7 +38,6 @@
 {
     JFGameInfoModel  *gameModel = [JFGameInfoModel shareGameInfo];
     self.mineConfig = gameModel.mineConfig;
-    
     [self initNowView];
 }
 
@@ -90,24 +89,13 @@
     [super viewDidLoad];
     
     m_fMineWidth = 48;
-    /*JFMineLevelConfig  *config = [[JFMineLevelConfig alloc] init];
-    config.mineNumber = 9;
-    config.totalButtonNumber = 16*30;
-    config.minePicNumber = 4;
-    config.rowNumber = 10;
-    config.colummNumber = 10;*/
+
     
    
  //   [config release];
   
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-
-    
-    
- 
-   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

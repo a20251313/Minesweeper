@@ -45,6 +45,7 @@
         sliderWidth.minimumValue = 9;
         sliderWidth.maximumValue = 24;
         sliderWidth.continuous = NO;
+        [sliderWidth setValue:9];
         [sliderWidth addTarget:self action:@selector(slideValueChange:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:sliderWidth];
         
@@ -79,6 +80,7 @@
         sliderHeight.minimumValue = 9;
         sliderHeight.maximumValue = 30;
         sliderHeight.continuous = NO;
+        [sliderHeight setValue:9];
         [sliderHeight addTarget:self action:@selector(slideValueChange:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:sliderHeight];
         
@@ -113,11 +115,12 @@
         sliderMineNumber.minimumValue = 10;
         sliderMineNumber.maximumValue = 64;
         sliderMineNumber.continuous = NO;
+        [sliderMineNumber setValue:10];
         [sliderMineNumber addTarget:self action:@selector(slideValueChange:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:sliderMineNumber];
         
         fXpoint += fSep+fSlideWidth;
-        labelMineNumber = [[UILabel alloc] initWithFrame:CGRectMake(fXpoint, fYpoint+15, fLabelWidth, fLabelHeigth+40)];
+        labelMineNumber = [[UILabel alloc] initWithFrame:CGRectMake(fXpoint, fYpoint+15, fLabelWidth+40, fLabelHeigth)];
         labelMineNumber.backgroundColor = [UIColor clearColor];
         labelMineNumber.font = [UIFont systemFontOfSize:17];
         labelMineNumber.text = @"10/64";
@@ -201,7 +204,7 @@
 -(void)clickSure:(id)sender
 {
     
-    [self removeFromSuperview];
+   
     
     if (delegate && [delegate respondsToSelector:@selector(getMineLevel:)])
     {
@@ -215,9 +218,25 @@
         [delegate getMineLevel:levelConfig];
         [levelConfig release];
     }
+    
+    
+     [self removeFromSuperview];
     DLOG(@"clickSure:%@",sender);
 }
 
+
+-(void)dealloc
+{
+    [labelHeight release];
+    [labelMineNumber release];
+    [labelWidth release];
+    
+    [sliderMineNumber release];
+    [sliderHeight release];
+    [sliderWidth release];
+    
+    [super dealloc];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -39,6 +39,10 @@
 
 -(void)addDataSource:(NSMutableArray *)array
 {
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+  
+    [m_arrayData removeAllObjects];
     NSAssert(array != nil, @"addDataSource array == nil");
     
     JFCellDataModel  *model1 = [[JFCellDataModel alloc] init];
@@ -55,7 +59,19 @@
     model2.cellType = JFCellTypeNormal;
     model2.rowCount = 4;
     model2.arrayText = [NSArray arrayWithObjects:@"初级",@"中级",@"高级",@"自定级",nil];
-    model2.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",@"9x9,10地雷",nil];
+   
+    
+    
+    if (info.mineConfig.minelevel != JFMineLevelSelfMake)
+    {
+         model2.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",@"9x9,10地雷",nil];
+    }else
+    {
+        JFMineLevelConfig  *config = info.mineConfig;
+         model2.arraySubText = [NSArray arrayWithObjects:@"9x9,10地雷",@"16x16,40地雷",@"16x30,99地雷",[NSString stringWithFormat:@"%dx%d,%d地雷",config.rowNumber,config.colummNumber,config.mineNumber],nil];
+    }
+    
+    
     [array addObject:model2];
     [model2 release];
     
@@ -114,8 +130,8 @@
     
     
     [self.tabBarController.navigationController.view removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReInitView" object:nil];
-    //[self.navigationController popViewControllerAnimated:YES];
+    [JFGameInfoModel storeGameInfo];
+    //[self.navigationntroller popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad
 {
@@ -162,13 +178,13 @@
                 rowNumber = 16;
                 columnNumber = 16;
                 mineNumber = 40;
-                mymineLevel = JFMineLevelSimple;
+                mymineLevel = JFMineLevelNormal;
                 break;
             case 2:
                 rowNumber = 16;
                 columnNumber = 30;
                 mineNumber = 99;
-                mymineLevel = JFMineLevelSimple;
+                mymineLevel = JFMineLevelHard;
                 break;
             case 3:
             {
@@ -309,7 +325,19 @@
                 myswitch.tag = 100;
                 [myswitch setOn:YES];
                 [cell.contentView addSubview:myswitch];
+                [myswitch addTarget:self action:@selector(switchValueChange:) forControlEvents:UIControlEventValueChanged];
                 [myswitch release];
+            }
+            
+            if (indexPath.row == 0)
+            {
+                JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+                [myswitch setOn:info.IsAudio];
+            }else if (indexPath.row == 1)
+            {
+                JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+                [myswitch setOn:info.IsAni];
+                
             }
             
                
@@ -357,9 +385,92 @@
     }
     
     
+    
+    
+    UIImageView  *view = (UIImageView *)[cell.contentView viewWithTag:1001122];
+    if (indexPath.section == 1)
+    {
+        JFMineLevelConfig  *config = [[JFGameInfoModel shareGameInfo] mineConfig];
+        
+        BOOL   bNeed = NO;
+        switch (indexPath.row)
+        {
+            case 0:
+                if (config.minelevel == JFMineLevelSimple)
+                {
+                    bNeed = YES;
+                }
+                break;
+            case 1:
+                if (config.minelevel == JFMineLevelNormal)
+                {
+                    bNeed = YES;
+                }
+                break;
+            case 2:
+                if (config.minelevel == JFMineLevelHard)
+                {
+                    bNeed = YES;
+                }
+                break;
+            case 3:
+                if (config.minelevel == JFMineLevelSelfMake)
+                {
+                    bNeed = YES;
+                }
+                break;
+                
+            default:
+                break;
+        }
+        
+        if (bNeed)
+        {
+            if (view == nil)
+            {
+                view = [[UIImageView alloc] initWithFrame:CGRectMake(100, 10, 24, 24)];
+                view.image = [UIImage imageNamed:@"check.png"];
+                view.tag = 1001122;
+                view.userInteractionEnabled = YES;
+                [cell.contentView addSubview:view];
+                [view release];
+            }
+        }else
+        {
+            [view removeFromSuperview];
+        }
+    
+    }else
+    {
+        [view removeFromSuperview];
+    }
+    
+    
     return cell;
 }
 
+
+-(void)switchValueChange:(UISwitch*)sendswitch
+{
+    
+    CGPoint point = sendswitch.center;
+    point = [m_tableView convertPoint:point fromView:sendswitch.superview];
+    NSIndexPath* indexpath = [m_tableView indexPathForRowAtPoint:point];
+  //  UITableViewCell *cell = [m_tableView cellForRowAtIndexPath:indexpath];
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+
+    if (indexpath.row == 0)
+    {
+        info.IsAudio = sendswitch.isOn;
+    }else if (indexpath.row == 1)
+    {
+        info.IsAni = sendswitch.isOn;
+    }
+    
+ 
+    
+}
 #pragma mark JFDIYMineLevelViewDelegate
 
 -(void)getMineLevel:(JFMineLevelConfig *)mineConfig
@@ -367,8 +478,13 @@
     JFGameInfoModel  *gameInfo = [JFGameInfoModel shareGameInfo];
     mineConfig.minePicNumber = gameInfo.mineConfig.minePicNumber;
     gameInfo.mineConfig = mineConfig;
+    [self addDataSource:m_arrayData];
+    [m_tableView reloadData];
+    
+
     
     [self done:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReInitView" object:nil];
     
 }
 
