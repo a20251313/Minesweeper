@@ -17,9 +17,9 @@
 #import "JFHelpViewController.h"
 #import "JFVictoryViewController.h"
 #import "JFGameInfoModel.h"
+#import "JFResultShowView.h"
 
-
-@interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate>
+@interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate,JFResultShowViewDelegate>
 {
     JFMineLevelConfig  *m_objMineConfig;
     NSMutableArray     *m_arrayStoreBtn;

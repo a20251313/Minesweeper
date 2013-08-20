@@ -21,6 +21,7 @@
 		F5049942178FD906007BBFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F504991D178FD906007BBFD7 /* Foundation.framework */; };
 		F504994A178FD906007BBFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5049948178FD906007BBFD7 /* InfoPlist.strings */; };
 		F504994D178FD906007BBFD7 /* MinesweeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F504994C178FD906007BBFD7 /* MinesweeperTests.m */; };
+		F508979517C31B93002C5275 /* JFResultShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = F508979417C31B93002C5275 /* JFResultShowView.m */; };
 		F510E5FB17A611D80060C06F /* NSMutableSet+addObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */; };
 		F51E3B6917A8BCA00024D351 /* JFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B6817A8BCA00024D351 /* JFSettingViewController.m */; };
 		F51E3B6C17A8C0CA0024D351 /* JFCellDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F51E3B6B17A8C0CA0024D351 /* JFCellDataModel.m */; };
@@ -382,6 +383,8 @@
 		F5049949178FD906007BBFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F504994B178FD906007BBFD7 /* MinesweeperTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinesweeperTests.h; sourceTree = "<group>"; };
 		F504994C178FD906007BBFD7 /* MinesweeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesweeperTests.m; sourceTree = "<group>"; };
+		F508979317C31B93002C5275 /* JFResultShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFResultShowView.h; sourceTree = "<group>"; };
+		F508979417C31B93002C5275 /* JFResultShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFResultShowView.m; sourceTree = "<group>"; };
 		F510E5F917A611D80060C06F /* NSMutableSet+addObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+addObjects.h"; sourceTree = "<group>"; };
 		F510E5FA17A611D80060C06F /* NSMutableSet+addObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+addObjects.m"; sourceTree = "<group>"; };
 		F51E3B6717A8BCA00024D351 /* JFSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSettingViewController.h; sourceTree = "<group>"; };
@@ -855,6 +858,8 @@
 				F524F0F017AA055300437F70 /* JFGameResultModel.m */,
 				F5D1EBF617BC6B23002C71B0 /* JFDIYMineLevelView.h */,
 				F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */,
+				F508979317C31B93002C5275 /* JFResultShowView.h */,
+				F508979417C31B93002C5275 /* JFResultShowView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1644,6 +1649,7 @@
 				F524F0EE17AA028800437F70 /* JFGameInfoModel.m in Sources */,
 				F524F0F117AA055300437F70 /* JFGameResultModel.m in Sources */,
 				F5D1EBF817BC6B23002C71B0 /* JFDIYMineLevelView.m in Sources */,
+				F508979517C31B93002C5275 /* JFResultShowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

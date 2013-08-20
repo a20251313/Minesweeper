@@ -94,6 +94,7 @@
    
  //   [config release];
   
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -139,7 +140,6 @@
     titleViewTemp.delegate = self;
     self.navigationItem.titleView = titleViewTemp;
     self.titleView = titleViewTemp;
-    [titleViewTemp startTimer];
     [titleViewTemp release];
     
     UIButton  *btn =[UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -334,7 +334,7 @@
 {
       NSString   *strPicName = [NSString stringWithFormat:@"%d-bar.png",m_objMineConfig.minePicNumber];
         
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     if (m_nav == nil)
     {
         
@@ -815,6 +815,14 @@
 
 -(void)aniForFlagToSomeMineBtn:(JFMineButton*)mineBtn
 {
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    if (!info.IsAni)
+    {
+        
+        [mineBtn setMineFlag:JFMineButtonFlagIsMine];
+        return;
+    }
 
    // CGRect  frame = [UIApplication sharedApplication];
     UIImageView  *view = [[UIImageView alloc] initWithFrame:CGRectMake((m_fWidth-m_fMineWidth)/2, 5, m_fMineWidth, m_fMineWidth)];
@@ -836,6 +844,16 @@
 
 -(void)aniForFlagQuestionMineBtn:(JFMineButton*)mineBtn
 {
+    
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    if (!info.IsAni)
+    {
+        
+        [mineBtn setMineFlag:JFMineButtonFlagIsNotSure];
+        return;
+    }
+    
+    
     CGPoint frompoint = [self.view convertPoint:mineBtn.center fromView:m_scorllView];
     
     UIImageView  *view = [[UIImageView alloc] initWithFrame:CGRectMake((m_fWidth-m_fMineWidth)/2, 5, m_fMineWidth, m_fMineWidth)];
@@ -865,10 +883,9 @@
     {
         self.mineConfig  = TemmineConfig;
     }
-    
-    m_bIsStart = YES;
+
     [self initPlayViewWithConfig:self.mineConfig];
-    [self.titleView startTimer];
+ // [self.titleView startTimer];
     
 }
 -(void)GameOver:(JFMineButton*)btn
@@ -883,16 +900,6 @@
         {
             
             [btnTemp setMineFlag:JFMineButtonFlagShowMine];
-            /*
-            if (btnTemp.buttonFlag == JFMineButtonFlagNone ||
-                btnTemp.buttonFlag == JFMineButtonFlagIsMine ||
-                btnTemp.buttonFlag == JFMineButtonFlagIsNotSure)
-            {
-                [btnTemp setMineFlag:JFMineButtonFlagShowMine];
-            }else
-            {
-                
-            }*/
             
         }else
         {
@@ -985,6 +992,12 @@
 
 -(void)clickMineButton:(JFMineButton*)mineButton
 {
+    
+    if (!m_bIsStart)
+    {
+        m_bIsStart = YES;
+        [self.titleView startTimer];
+    }
     if (mineButton.isMine && mineButton.buttonFlag != JFMineButtonFlagIsMine)
     {
         [self GameOver:mineButton];
