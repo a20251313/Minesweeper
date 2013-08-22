@@ -348,6 +348,10 @@
 		F5D1EBF817BC6B23002C71B0 /* JFDIYMineLevelView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */; };
 		F5D1EBFB17BC758F002C71B0 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D1EBF917BC758A002C71B0 /* cancel.png */; };
 		F5D1EBFC17BC758F002C71B0 /* makesure.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D1EBFA17BC758C002C71B0 /* makesure.png */; };
+		F5DEFB9A17C5B140004176BD /* close_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5DEFB9917C5B13E004176BD /* close_info@2x.png */; };
+		F5DEFB9D17C5B364004176BD /* JFResultFailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DEFB9C17C5B364004176BD /* JFResultFailView.m */; };
+		F5DEFBB617C5B53C004176BD /* restart_game@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5DEFBB517C5B539004176BD /* restart_game@2x.png */; };
+		F5DEFBB817C5B550004176BD /* quit_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5DEFBB717C5B550004176BD /* quit_choice@2x.png */; };
 		F5F6D904179CF960005A0233 /* JFTitleClickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D903179CF960005A0233 /* JFTitleClickButton.m */; };
 		F5F6D907179D05DC005A0233 /* JFMineLevelConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F6D906179D05DB005A0233 /* JFMineLevelConfig.m */; };
 /* End PBXBuildFile section */
@@ -721,6 +725,11 @@
 		F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFDIYMineLevelView.m; sourceTree = "<group>"; };
 		F5D1EBF917BC758A002C71B0 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		F5D1EBFA17BC758C002C71B0 /* makesure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = makesure.png; sourceTree = "<group>"; };
+		F5DEFB9917C5B13E004176BD /* close_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_info@2x.png"; sourceTree = "<group>"; };
+		F5DEFB9B17C5B364004176BD /* JFResultFailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFResultFailView.h; sourceTree = "<group>"; };
+		F5DEFB9C17C5B364004176BD /* JFResultFailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFResultFailView.m; sourceTree = "<group>"; };
+		F5DEFBB517C5B539004176BD /* restart_game@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restart_game@2x.png"; sourceTree = "<group>"; };
+		F5DEFBB717C5B550004176BD /* quit_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quit_choice@2x.png"; path = "../quit_choice@2x.png"; sourceTree = "<group>"; };
 		F5F6D902179CF960005A0233 /* JFTitleClickButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTitleClickButton.h; sourceTree = "<group>"; };
 		F5F6D903179CF960005A0233 /* JFTitleClickButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTitleClickButton.m; sourceTree = "<group>"; };
 		F5F6D905179D05DB005A0233 /* JFMineLevelConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFMineLevelConfig.h; sourceTree = "<group>"; };
@@ -860,6 +869,8 @@
 				F5D1EBF717BC6B23002C71B0 /* JFDIYMineLevelView.m */,
 				F508979317C31B93002C5275 /* JFResultShowView.h */,
 				F508979417C31B93002C5275 /* JFResultShowView.m */,
+				F5DEFB9B17C5B364004176BD /* JFResultFailView.h */,
+				F5DEFB9C17C5B364004176BD /* JFResultFailView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -878,6 +889,9 @@
 		F5F2F91A179D0FD200360ED4 /* public resource */ = {
 			isa = PBXGroup;
 			children = (
+				F5DEFBB517C5B539004176BD /* restart_game@2x.png */,
+				F5DEFBB717C5B550004176BD /* quit_choice@2x.png */,
+				F5DEFB9917C5B13E004176BD /* close_info@2x.png */,
 				F5A0EFEB17968BA3009407FC /* appearance.png */,
 				F5A0EFEC17968BA3009407FC /* Changelog */,
 				F5A0EFED17968BA3009407FC /* check.png */,
@@ -1599,6 +1613,9 @@
 				F58DF74617A90036009F2732 /* help.txt in Resources */,
 				F5D1EBFB17BC758F002C71B0 /* cancel.png in Resources */,
 				F5D1EBFC17BC758F002C71B0 /* makesure.png in Resources */,
+				F5DEFB9A17C5B140004176BD /* close_info@2x.png in Resources */,
+				F5DEFBB617C5B53C004176BD /* restart_game@2x.png in Resources */,
+				F5DEFBB817C5B550004176BD /* quit_choice@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1650,6 +1667,7 @@
 				F524F0F117AA055300437F70 /* JFGameResultModel.m in Sources */,
 				F5D1EBF817BC6B23002C71B0 /* JFDIYMineLevelView.m in Sources */,
 				F508979517C31B93002C5275 /* JFResultShowView.m in Sources */,
+				F5DEFB9D17C5B364004176BD /* JFResultFailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

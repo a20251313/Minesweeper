@@ -18,6 +18,7 @@
 #import "JFVictoryViewController.h"
 #import "JFGameInfoModel.h"
 #import "JFResultShowView.h"
+#import "JFResultFailView.h"
 
 @interface JFViewController : UIViewController<JFTitleClickButtonDelegate,JFMineButtonDelegate,JFResultShowViewDelegate>
 {

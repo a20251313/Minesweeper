@@ -915,6 +915,16 @@
     }
     
     [self storeGameInfoWhenGameOver:NO];
+    
+    
+    JFResultFailView  *showView = [[JFResultFailView alloc] initWithFrame:CGRectMake((320-280)/2, 100, 280, 320)];
+    showView.center = self.view.center;
+    showView.delegate = self;
+    [self.view addSubview:showView];
+    [showView release];
+    
+    
+    
     NSLog(@"game over");
 }
 
@@ -932,10 +942,53 @@
         }
     }
     [self storeGameInfoWhenGameOver:YES];
+    
+    
+    [self showResultView:nil];
     DLOG(@"WinGame:%@ second:%d",mineButton,second);
     
 }
 
+
+-(void)showResultView:(JFMineLevelConfig*)infoconfig
+{
+    JFResultShowModel  *model = [[JFResultShowModel alloc] init];
+    model.level = self.mineConfig.minelevel;
+    
+    JFGameResultModel   *gameresultModel = nil;
+    JFGameInfoModel  *info = [JFGameInfoModel shareGameInfo];
+    
+    switch (model.level)
+    {
+        case JFMineLevelSimple:
+            gameresultModel = info.simpleResult;
+            break;
+        case JFMineLevelNormal:
+            gameresultModel = info.NormalResult;
+            break;
+        case JFMineLevelHard:
+            gameresultModel = info.HardResult;
+            break;
+        case JFMineLevelSelfMake:
+            gameresultModel = info.DIYResult;
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    model.bestTime = gameresultModel.bestCostTime;
+    model.winTime = [self.titleView stopTimer];
+    
+    JFResultShowView  *showView = [[JFResultShowView alloc] initWithFrame:CGRectMake((320-280)/2, 100, 280, 320)];
+    showView.center = self.view.center;
+    showView.delagate = self;
+    showView.mineModel = model;
+    [model release];
+    [self.view addSubview:showView];
+    [showView release];
+}
 
 -(void)storeGameInfoWhenGameOver:(BOOL)bIsWin
 {
@@ -1071,6 +1124,13 @@
     }
     [self.titleView setMineFlagNumber:m_iFlagMineNum];
     
+}
+
+#pragma mark  JFResultShowViewDelegate
+
+-(void)restartGame:(id)sender
+{
+    [self startGameWithConfig:self.mineConfig];
 }
 
 

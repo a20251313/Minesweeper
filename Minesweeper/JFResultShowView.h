@@ -7,6 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "JFMineLevelConfig.h"
+
+
+@interface JFResultShowModel:NSObject
+{
+    
+}
+
+@property(nonatomic)JFMineLevel  level;
+@property(nonatomic)int          winTime;
+@property(nonatomic)int          bestTime;
+@end
+
+
 
 @protocol JFResultShowViewDelegate <NSObject>
 -(void)restartGame:(id)sender;
@@ -20,4 +35,5 @@
 }
 
 @property(nonatomic,assign)id<JFResultShowViewDelegate> delagate;
+@property(nonatomic,retain)JFResultShowModel  *mineModel;
 @end
