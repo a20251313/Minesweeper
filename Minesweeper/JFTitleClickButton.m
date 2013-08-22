@@ -20,6 +20,18 @@
 @synthesize secondTime = m_iSeconds;
 
 
+-(void)setTimeZero:(id)sender
+{
+    
+    UILabel  *labelTime = (UILabel *)[self viewWithTag:RightLabelTag];
+    
+    if (labelTime)
+    {
+        [labelTime setText:@"00:00"];
+    }
+    
+}
+
 - (id)initWithFrame:(CGRect)frame WithConfig:(JFMineLevelConfig*)config
 {
     self = [super initWithFrame:frame];

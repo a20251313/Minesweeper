@@ -33,9 +33,9 @@
          self.layer.contents = (id)[UIImage imageNamed:@"10-board-background.png"].CGImage;
         
         CGFloat   fHeight = frame.size.height-20;
-        CGFloat   fwidth = frame.size.width-20;
+        CGFloat   fwidth = frame.size.width;
         
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, fwidth, fHeight)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, fwidth, fHeight)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor clearColor];
@@ -92,7 +92,7 @@
     UILabel  *label = (UILabel *)[cell.contentView viewWithTag:100];
     if (label == nil)
     {
-        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width, 21)];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 21)];
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor purpleColor];

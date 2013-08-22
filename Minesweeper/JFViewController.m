@@ -884,7 +884,11 @@
         self.mineConfig  = TemmineConfig;
     }
 
+    m_bIsStart = NO;
     [self initPlayViewWithConfig:self.mineConfig];
+    
+
+    
  // [self.titleView startTimer];
     
 }
@@ -1036,6 +1040,9 @@
 #pragma mark JFTitleClickButton
 -(void)clickTitleButton:(JFTitleClickButton*)buttonView
 {
+    [self.titleView stopTimer];
+    [self.titleView setTimeZero:nil];
+    
     m_iFlagMineNum = self.mineConfig.mineNumber;
     m_iFlagRightNumber = 0;
     [self startGameWithConfig:self.mineConfig];
@@ -1130,6 +1137,10 @@
 
 -(void)restartGame:(id)sender
 {
+    
+    [self.titleView stopTimer];
+    [self.titleView setTimeZero:nil];
+    
     [self startGameWithConfig:self.mineConfig];
 }
 
