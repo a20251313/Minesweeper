@@ -164,7 +164,7 @@
         CGRect frame = [UIScreen mainScreen].applicationFrame;
         
         //NSLog(@"frame:%@",[NSValue valueWithCGRect:frame]);
-        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44)];
+        m_scorllView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, frame.size.width, frame.size.height-44-20)];
         m_scorllView.contentSize = m_scorllView.frame.size;
        // m_scorllView.contentOffset = CGPointMake(0, frame.size.width);
         m_fWidth = frame.size.width;
@@ -184,6 +184,7 @@
     
     [self.titleView setMineFlagNumber:config.mineNumber];
     m_iFlagMineNum = config.mineNumber;
+    m_iFlagRightNumber = 0;
     
     if (config != self.mineConfig)
     {
@@ -463,7 +464,7 @@
     int totalNumber = self.mineConfig.rowNumber*self.mineConfig.colummNumber;
     
     //left
-    if (tag-1 > 0 && tag-1 < totalNumber)
+    if (tag-1 >= 0 && tag-1 < totalNumber)
     {
         
         if ((tag-1)%columnNUmber != (columnNUmber-1))
@@ -475,7 +476,7 @@
     }
     
     //right
-    if (tag+1 > 0 && tag+1 < totalNumber)
+    if (tag+1 >= 0 && tag+1 < totalNumber)
     {
         if ((tag+1)%columnNUmber != 0)
         {
@@ -667,7 +668,7 @@
     }
 
    // [NSException raise:@"mineButton" format:@"mineButton"];
-    mineButton.IsShow = YES;
+     mineButton.IsShow = YES;
     [mineButton setMineFlag:JFMineButtonFlagShowNumber];
 
     if (mineButton.mineNumber <= 0)
@@ -682,8 +683,6 @@
             if (btnTemp.mineNumber <= 0 )
             {
                 [self showBtnNumber:btnTemp];
-                //[self performSelector:@selector(showBtnNumber:) withObject:btnTemp];
-               // [self showBtnNumber:btnTemp];
             }
             
            /* if (mineButton.buttonFlag == JFMineButtonFlagNone)
@@ -710,7 +709,7 @@
         return;
     }
     
-    mineButton.IsShow = YES;
+
     int tag = mineButton.tag;
     int count = 0;
     int  errorFlagNumber = 0;
@@ -774,22 +773,23 @@
           
         }
         
-        NSLog(@"mineNumber <= count  :%d %d",mineNumber,count);
+        DLOG(@"mineNumber <= count  :%d %d",mineNumber,count);
     }else
     {
+        
+        DLOG(@"mineNumber <= count  :%d %d",mineNumber,count);
       //  return;
         //fail 
         for (int i = 0; i < [array count]; i++)
         {
             JFMineButton  *btn = [array objectAtIndex:i];
-            btn.IsShow = YES;
+          //  btn.IsShow = YES;
             
             
             if (JFMineButtonFlagNone == btn.buttonFlag)
             {
-                CABasicAnimation  *ani =  [CABasicAnimation aniRotate:0.25 tovalue:-M_PI_4/2 fromValue:0];// [CABasicAnimation aniRotate:0.25 floatRotate:0.1 view:nil];
-               // btn.layer.anchorPoint = CGPointMake(0.5, 0.5);
-                 [btn.layer addAnimation:ani forKey:nil];
+                CABasicAnimation  *ani =  [CABasicAnimation aniRotate:0.25 tovalue:-M_PI_4/2 fromValue:0];
+                [btn.layer addAnimation:ani forKey:nil];
                 
             }
         }
@@ -1057,9 +1057,11 @@
     {
         m_bIsStart = YES;
         [self.titleView startTimer];
+        DLOG(@"start caluctle time");
     }
     if (mineButton.isMine && mineButton.buttonFlag != JFMineButtonFlagIsMine)
     {
+        DLOG(@"GameOver yeah");
         [self GameOver:mineButton];
         [mineButton setMineFlag:JFMineButtonFlagWMineExpo];
         return;
@@ -1068,12 +1070,15 @@
     if (mineButton.buttonFlag == JFMineButtonFlagIsMine || mineButton.buttonFlag == JFMineButtonFlagShowMine ||
         mineButton.buttonFlag == JFMineButtonFlagWMineExpo || mineButton.buttonFlag == JFMineButtonFlagWrongMine)
     {
+        
+        DLOG(@"clickMineButton  return:%@",mineButton);
         return;
     }
     
     if (mineButton.buttonFlag == JFMineButtonFlagShowNumber)
     {
         
+         DLOG(@"clickMineButton showFlagSucOrFail %@",mineButton);
         [self showFlagSucOrFail:mineButton];
         return;
     }
@@ -1083,6 +1088,8 @@
     //follow are no mine
     if (mineButton.mineNumber >= 0 && mineButton.buttonFlag == JFMineButtonFlagNone)
     {
+        
+        DLOG(@"clickMineButton showBtnNumber %@",mineButton);
         [self showBtnNumber:mineButton];
         return;
     }
@@ -1103,10 +1110,7 @@
         }
         m_iFlagMineNum--;
         
-        if (m_iFlagRightNumber == self.mineConfig.mineNumber)
-        {
-            [self WinGame:mineButton];
-        }
+       
     }else if (mineButton.buttonFlag == JFMineButtonFlagIsMine)
     {
         [mineButton setMineFlag:JFMineButtonFlagIsNotSure];
@@ -1130,6 +1134,15 @@
         m_iFlagMineNum = 0;
     }
     [self.titleView setMineFlagNumber:m_iFlagMineNum];
+    
+    
+    
+    //
+    if (m_iFlagRightNumber == self.mineConfig.mineNumber)
+    {
+        [self WinGame:mineButton];
+    }
+    
     
 }
 
